@@ -5,34 +5,116 @@ from models import Student, Amenity_type, Amenity, Question, Review, QuestionAns
 
 with app.app_context():
     db.create_all()
-    print("Registered tables:", db.metadata.tables.keys())
+    print("Registered tables:", db.metadata.tables.keys()) #test: check db tables
+
 
 #just to see the backend server is running
 @app.route("/")
 def home():
     return "CityGems Backend Running"
 
+
+
 #here i'll add the functions that my login page will use including:
 # - login with email address and password (check the email and password they enter match the db to login)
 # - signup * this one still need to be sure about because i'd have to do validation check to verify they're a student
-@app.route("/login")
+@app.route("/login", methods = ["POST"])
+def verify_student_login():
+    student_email = request.get.json("studentEmail")
+    student_password = request.get.json("studentPassword")
 
-#here i'll add the functions that my homepage will use including:
-# - get amenities to display in the amenity list
-# - get reviews * with this though it'll be the calulations of the average rating rather than the overall ratings
-# - also need to add the 
-@app.route("/homepage", methods = ["GET"])
-def get_amenities():
-    amenities = Amenity.query.all() #get all the amenities 
+    verified_student = Student.query.filter_by(student_email=student_email, student_password=student_password).first() #the first record in the db with the matching email and password is the student
+
+    if not verified_student: #error message and status code if no student with the matching details exists
+        return jsonify({"message:" "Invalid login! Please try again"}), 401 #status code 401: unauthorised
+    
+    return jsonify({
+        "message" : "login successful! "
+    }), 200 #status code 200: successful
+
+
+
+@app.route("/amenity_types/<int:id>/amenities", methods = ["GET"])
+def get_amenities_by_type(id): #will be used when you want to filter amenities for a certain type
+    #need to finish
+
+
+
+
+@app.route("/amenities", methods = ["GET"])
+def get_amenities(): 
+    amenities = Amenity.query.all() #get all the amenities - this is for when i do the search and display all the current amenities
     json_amenities = list(map(lambda x: x.to_json(), amenities)) #convert them into a list of json objects
     return jsonify({"amenities": json_amenities})#return the list of json amenities
+    
+@app.route("/amenities", methods = ["POST"])
+def add_amenity(): #when i want to create new amenities
+    #btw when i send the amenity to the backend from the frontend, i'll need to refresh the page or just append the new amenity to the amenity list somehow
 
-#@app.route("/add_review")
-#functions here
+    amenity_name = request.json.get("amenityName")
+    amenity_address = request.json.get("amenityAddress")
+    amenity_postcode = request.json.get("amenityPostcode")
+    amenity_type_id = request.json.get("amenityTypeId")
+
+    if not amenity_name or not amenity_address or not amenity_postcode or not amenity_type_id:
+        return(
+            jsonify({"message": "insufficient or wrong amenity data provided"}), 400 #status code 400: unsuccessful
+        )
+    
+    new_amenity = Amenity(amenity_name = amenity_name, amenity_address=amenity_address, amenity_postcode=amenity_postcode, amenity_type_id=amenity_type_id)
+    
+    try:
+        db.session.add(new_amenity)
+        db.session.commit()
+    except Exception as e:
+        return jsonify({"message": str(e)}), 400
+
+    return jsonify({"message": "amenity creates!"}), 201 #status code 201: created successfully
 
 
-#@app.route("/add_amenity")
-#functions here
+@app.route("/amenities/<int:id>/")
+def search_amenity(id):
+    #need to finish this
+
+
+
+
+@app.route("/amenity_types/<int:id>/questions", methods = ["GET"])
+def get_questions_by_type(id):
+    #get the questions for the specific amenity type
+
+
+
+
+@app.route("/reviews", methods = ["POST"])
+def add_review(): #when i want to create new amenities
+    overall_rating = request.json.get("overallRating")
+    student_id = request.json.get("studentId")
+    amenity_id = request.json.get("amenityId")
+
+    if not overall_rating or not student_id or not amenity_id:
+        return(
+            jsonify({"message": "insufficient or wrong amenity data provided"}), 400 #status code 400: unsuccessful
+        )
+    
+    new_Review = Review(overall_rating=overall_rating, student_id=student_id, amenity_id=amenity_id)
+
+    try:
+        db.session.add(new_Review)
+        db.session.commit()
+    except Exception as e:
+        return jsonify({"message": str(e)}), 400
+
+    return jsonify({"message": "review created!"}), 201
+    
+
+
+@app.route("/amenities/<int:id>/review_summary", methods = ["GET"])
+def get_review_summary(id):
+    #this is where i get the review summaries with the percentages and overall ratings
+
+
+
 
 if __name__ == "__main__":
     #create the models/entities in models.py
