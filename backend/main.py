@@ -36,7 +36,17 @@ def verify_student_login():
 
 @app.route("/amenity_types/<int:id>/amenities", methods = ["GET"])
 def get_amenities_by_type(id): #will be used when you want to filter amenities for a certain type
-    #need to finish
+    amenity = Amenity.query.get(id)
+
+    if not amenity:
+        return jsonify({"message": "amenity not found"}), 404
+    
+    return jsonify({
+        "message": "amenity found!",
+        "id": amenity.id,
+        "name": amenity.name,
+        "address": amenity.address    
+    }), 200
 
 
 
@@ -72,20 +82,40 @@ def add_amenity(): #when i want to create new amenities
     return jsonify({"message": "amenity creates!"}), 201 #status code 201: created successfully
 
 
-@app.route("/amenities/<int:id>/")
-def search_amenity(id):
-    #need to finish this
+#this is for when you find the specific amenity via search
+@app.route("/amenities/<int:id>/", methods = ["GET"])
+def find_amenity(id):
+    found_amenity = Amenity.query.get(id)
+
+    if not found_amenity:
+        return jsonify({"message": "amenity not found"}), 404 #status code 404: not found
+
+    return jsonify({
+        "message": "amenity found",
+        "id": found_amenity.id,
+        "name": found_amenity.name,
+        "address" : found_amenity.address            
+    }), 200
 
 
-
-
+#when you want only questions for the specific amenity type
 @app.route("/amenity_types/<int:id>/questions", methods = ["GET"])
 def get_questions_by_type(id):
     #get the questions for the specific amenity type
+    found_questions = Question.query.get(id)
+
+    if not found_questions:
+        return jsonify({"message": "amenity type wrong! Questions not displayed"}), 400
+    
+    return jsonify({
+        "message": "questions found! returning...",
+        "id": found_questions.id,
+        "fullQuestions": found_questions.fullQuestion
+        }), 400
 
 
 
-
+#to create reviews
 @app.route("/reviews", methods = ["POST"])
 def add_review(): #when i want to create new amenities
     overall_rating = request.json.get("overallRating")
@@ -112,6 +142,29 @@ def add_review(): #when i want to create new amenities
 @app.route("/amenities/<int:id>/review_summary", methods = ["GET"])
 def get_review_summary(id):
     #this is where i get the review summaries with the percentages and overall ratings
+    questions = Question.query.join(Amenity_type).join(Amenity)\
+        .filter(Amenity.id == id).all()
+
+    summary = {}
+
+    for question in questions:
+        total = QuestionAnswer.query.join(Review).filter(
+            Review.amenity_id == id,
+            QuestionAnswer.question_id == question.id
+        ).count()
+
+        yes_count = QuestionAnswer.query.join(Review).filter(
+            Review.amenity_id == id,
+            QuestionAnswer.question_id == question.id,
+            QuestionAnswer.answer == "y"
+        ).count()
+
+        percentage = (yes_count / total * 100) if total > 0 else 0
+
+        summary[question.text] = round(percentage, 2)
+
+    return jsonify(summary), 200
+
 
 
 
