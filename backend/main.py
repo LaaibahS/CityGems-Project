@@ -20,8 +20,8 @@ def home():
 # - signup * this one still need to be sure about because i'd have to do validation check to verify they're a student
 @app.route("/login", methods = ["POST"])
 def verify_student_login():
-    student_email = request.get.json("studentEmail")
-    student_password = request.get.json("studentPassword")
+    student_email = request.json.get("studentEmail")
+    student_password = request.json.get("studentPassword")
 
     verified_student = Student.query.filter_by(student_email=student_email, student_password=student_password).first() #the first record in the db with the matching email and password is the student
 
@@ -36,17 +36,18 @@ def verify_student_login():
 
 @app.route("/amenity_types/<int:id>/amenities", methods = ["GET"])
 def get_amenities_by_type(id): #will be used when you want to filter amenities for a certain type
-    amenity = Amenity.query.get(id)
+    amenities = Amenity.query.filter_by(amenity_type_id = id).all() #need to match the amenity type to the id paramater then return the list of amenities
 
-    if not amenity:
-        return jsonify({"message": "amenity not found"}), 404
+    if not amenities:
+        return jsonify({"message": "amenities not found"}), 404
     
-    return jsonify({
+    return jsonify([{
         "message": "amenity found!",
         "id": amenity.id,
         "name": amenity.name,
         "address": amenity.address    
-    }), 200
+    } for a in amenities
+    ]), 200
 
 
 
@@ -83,7 +84,7 @@ def add_amenity(): #when i want to create new amenities
 
 
 #this is for when you find the specific amenity via search
-@app.route("/amenities/<int:id>/", methods = ["GET"])
+@app.route("/amenities/<int:id>", methods = ["GET"])
 def find_amenity(id):
     found_amenity = Amenity.query.get(id)
 
@@ -102,16 +103,17 @@ def find_amenity(id):
 @app.route("/amenity_types/<int:id>/questions", methods = ["GET"])
 def get_questions_by_type(id):
     #get the questions for the specific amenity type
-    found_questions = Question.query.get(id)
+    found_questions = Question.query.filter_by(amenity_type_id = id).all() # again, i need to match the amenity_type ids and then get the list of relevant qs
 
     if not found_questions:
-        return jsonify({"message": "amenity type wrong! Questions not displayed"}), 400
+        return jsonify({"message": "questions not found"}), 404
     
-    return jsonify({
+    return jsonify([{
         "message": "questions found! returning...",
         "id": found_questions.id,
         "fullQuestions": found_questions.fullQuestion
-        }), 400
+        } for qs in found_questions
+        ]), 200
 
 
 
@@ -144,6 +146,8 @@ def get_review_summary(id):
     #this is where i get the review summaries with the percentages and overall ratings
     questions = Question.query.join(Amenity_type).join(Amenity)\
         .filter(Amenity.id == id).all()
+    
+    #add an error thing here so that i can see if it works on the client
 
     summary = {}
 
