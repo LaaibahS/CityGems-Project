@@ -145,17 +145,15 @@ def get_questions_by_type(id):
         } for qs in found_questions
         ]), 200
 
-#TESTED UP TO HERE
-
-#NEED TO DO A JOIN ON THE QUESTIONANSWER AND REVIEW TABLES TO BE ABLE TO DO THE SUMMARIES CORRECTLY
 
 #to create reviews
 @app.route("/reviews", methods = ["POST"])
 def add_review(): #when i want to create new reviews
 
     #the questionAnswer fields
-    answer_button = request.json.get("answerButton")
-    question_id = request.json.get("questionId")
+    # answer_button = request.json.get("answerButton")
+    # question_id = request.json.get("questionId")
+    answer_list = request.json.get("answers")
 
 
     #the review fields
@@ -163,10 +161,16 @@ def add_review(): #when i want to create new reviews
     student_id = request.json.get("studentId")
     amenity_id = request.json.get("amenityId")
 
-    if not answer_button or not question_id:
-        return (
-            jsonify({"message": "insufficient answer data provided. Can't make review"}), 400
-        )
+    # if not answer_button or not question_id:
+    #     return (
+    #         jsonify({"message": "insufficient answer data provided. Can't make review"}), 400
+    #     )
+
+    if not answer_list:
+        jsonify({"message": "question answers not provided, cannot create review"}), 400
+    
+    if not isinstance(answer_list, list):
+        jsonify({"message": "question answers not provided in a list, cannot create review"}), 400
 
     if not overall_rating or not student_id or not amenity_id:
         return(
@@ -178,8 +182,11 @@ def add_review(): #when i want to create new reviews
     try:
         db.session.add(new_Review)
         db.session.flush()
-        new_QuestionAnswer = QuestionAnswer(answer_button=answer_button, question_id=question_id, review_id=new_Review.review_id)
-        db.session.add(new_QuestionAnswer)
+
+        for answers in answer_list:
+            new_QuestionAnswer = QuestionAnswer(answer_button=answers["answerButton"], question_id=answers["questionId"], review_id=new_Review.review_id)
+            db.session.add(new_QuestionAnswer)
+
         db.session.commit()
     except Exception as e:
         return jsonify({"message": str(e)}), 400
@@ -213,16 +220,16 @@ def get_review_summary(id):
         yes_count = QuestionAnswer.query.join(Review).filter(
             Review.amenity_id == id,
             QuestionAnswer.question_id == question.question_id,
-            QuestionAnswer.answer == "y"
+            QuestionAnswer.answer_button == "y"
         ).count()
 
         percentage = ((yes_count / total) * 100) if total > 0 else 0
 
-        summary[question.text] = round(percentage, 2)
+        summary[question.full_question] = round(percentage, 2)
 
     return jsonify(summary), 200
 
-
+#TESTED UP TO HERE
 
 
 
