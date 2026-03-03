@@ -127,10 +127,8 @@ def find_amenity(id):
     }), 200
 
 
-#TESTED UP TO HERE
 
 
-#QUESTIONS AREN'T DISPLAYING!!!!!!!!!!!!!!!1
 
 #when you want only questions for the specific amenity type
 @app.route("/amenity_types/<int:id>/questions", methods = ["GET"])
@@ -142,31 +140,46 @@ def get_questions_by_type(id):
         return jsonify({"message": "questions not found"}), 404
     
     return jsonify([{
-        "message": "questions found! returning...",
-        "id": found_questions.id,
-        "fullQuestions": found_questions.fullQuestion
+        "id": qs.question_id,
+        "fullQuestions": qs.full_question
         } for qs in found_questions
         ]), 200
 
+#TESTED UP TO HERE
 
 #NEED TO DO A JOIN ON THE QUESTIONANSWER AND REVIEW TABLES TO BE ABLE TO DO THE SUMMARIES CORRECTLY
 
 #to create reviews
 @app.route("/reviews", methods = ["POST"])
-def add_review(): #when i want to create new amenities
+def add_review(): #when i want to create new reviews
+
+    #the questionAnswer fields
+    answer_button = request.json.get("answerButton")
+    question_id = request.json.get("questionId")
+
+
+    #the review fields
     overall_rating = request.json.get("overallRating")
     student_id = request.json.get("studentId")
     amenity_id = request.json.get("amenityId")
 
+    if not answer_button or not question_id:
+        return (
+            jsonify({"message": "insufficient answer data provided. Can't make review"}), 400
+        )
+
     if not overall_rating or not student_id or not amenity_id:
         return(
-            jsonify({"message": "insufficient or wrong amenity data provided"}), 400 #status code 400: unsuccessful
+            jsonify({"message": "insufficient or wrong review data provided"}), 400
         )
     
     new_Review = Review(overall_rating=overall_rating, student_id=student_id, amenity_id=amenity_id)
-
+    
     try:
         db.session.add(new_Review)
+        db.session.flush()
+        new_QuestionAnswer = QuestionAnswer(answer_button=answer_button, question_id=question_id, review_id=new_Review.review_id)
+        db.session.add(new_QuestionAnswer)
         db.session.commit()
     except Exception as e:
         return jsonify({"message": str(e)}), 400
@@ -194,12 +207,12 @@ def get_review_summary(id):
     for question in questions:
         total = QuestionAnswer.query.join(Review).filter(
             Review.amenity_id == id,
-            QuestionAnswer.question_id == question.id
+            QuestionAnswer.question_id == question.question_id
         ).count()
 
         yes_count = QuestionAnswer.query.join(Review).filter(
             Review.amenity_id == id,
-            QuestionAnswer.question_id == question.id,
+            QuestionAnswer.question_id == question.question_id,
             QuestionAnswer.answer == "y"
         ).count()
 
