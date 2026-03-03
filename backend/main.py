@@ -130,6 +130,8 @@ def find_amenity(id):
 #TESTED UP TO HERE
 
 
+#QUESTIONS AREN'T DISPLAYING!!!!!!!!!!!!!!!1
+
 #when you want only questions for the specific amenity type
 @app.route("/amenity_types/<int:id>/questions", methods = ["GET"])
 def get_questions_by_type(id):
@@ -147,6 +149,7 @@ def get_questions_by_type(id):
         ]), 200
 
 
+#NEED TO DO A JOIN ON THE QUESTIONANSWER AND REVIEW TABLES TO BE ABLE TO DO THE SUMMARIES CORRECTLY
 
 #to create reviews
 @app.route("/reviews", methods = ["POST"])
