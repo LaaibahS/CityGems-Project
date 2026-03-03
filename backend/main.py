@@ -17,7 +17,6 @@ def home():
 
 #here i'll add the functions that my login page will use including:
 # - login with email address and password (check the email and password they enter match the db to login)
-# - signup * this one still need to be sure about because i'd have to do validation check to verify they're a student
 @app.route("/login", methods = ["POST"])
 def verify_student_login():
     student_email = request.json.get("studentEmail")
@@ -26,12 +25,40 @@ def verify_student_login():
     verified_student = Student.query.filter_by(student_email=student_email, student_password=student_password).first() #the first record in the db with the matching email and password is the student
 
     if not verified_student: #error message and status code if no student with the matching details exists
-        return jsonify({"message:" "Invalid login! Please try again"}), 401 #status code 401: unauthorised
+        return jsonify({"message": "Invalid login! Please try again"}), 401 #status code 401: unauthorised
     
     return jsonify({
         "message" : "login successful! "
     }), 200 #status code 200: successful
 
+# - signup * this one still need to be sure about because i'd have to do validation check to verify they're a student
+@app.route("/signup", methods = ["POST"])
+def new_login():
+    student_email = request.json.get("studentEmail")
+    student_password = request.json.get("studentPassword")
+
+    if not student_email or not student_password:
+        return(
+            jsonify({"message": "insufficient or wrong student data provided"}), 400 #status code 400: unsuccessful
+        )
+    
+    new_student = Student(student_email = student_email, student_password=student_password)
+    
+    try:
+        db.session.add(new_student)
+        db.session.commit()
+    except Exception as e:
+        return jsonify({"message": str(e)}), 400
+
+    return jsonify({"message": "student login created!"}), 201 #status code 201: created successful
+
+
+#WILL NEED GET /AMENITY_TYPE ENDPOINT HERE ASWELL BECAUSE I NEED TO MATCH THE CORRECT TYPE IDS
+@app.route("/amenity_types", methods = ["GET"])
+def get_amenity_types(): 
+    types = Amenity_type.query.all()
+    json_types = list(map(lambda x: x.to_json(), types))
+    return jsonify({"types": json_types})
 
 
 @app.route("/amenity_types/<int:id>/amenities", methods = ["GET"])
@@ -42,10 +69,9 @@ def get_amenities_by_type(id): #will be used when you want to filter amenities f
         return jsonify({"message": "amenities not found"}), 404
     
     return jsonify([{
-        "message": "amenity found!",
-        "id": amenity.id,
-        "name": amenity.name,
-        "address": amenity.address    
+        "id": a.amenity_id,
+        "name": a.amenity_name,
+        "address": a.amenity_address    
     } for a in amenities
     ]), 200
 
@@ -57,6 +83,8 @@ def get_amenities():
     amenities = Amenity.query.all() #get all the amenities - this is for when i do the search and display all the current amenities
     json_amenities = list(map(lambda x: x.to_json(), amenities)) #convert them into a list of json objects
     return jsonify({"amenities": json_amenities})#return the list of json amenities
+
+
     
 @app.route("/amenities", methods = ["POST"])
 def add_amenity(): #when i want to create new amenities
@@ -69,7 +97,7 @@ def add_amenity(): #when i want to create new amenities
 
     if not amenity_name or not amenity_address or not amenity_postcode or not amenity_type_id:
         return(
-            jsonify({"message": "insufficient or wrong amenity data provided"}), 400 #status code 400: unsuccessful
+            jsonify({"message": "insufficient or wrong amenity data provided"}), 400 
         )
     
     new_amenity = Amenity(amenity_name = amenity_name, amenity_address=amenity_address, amenity_postcode=amenity_postcode, amenity_type_id=amenity_type_id)
@@ -80,7 +108,7 @@ def add_amenity(): #when i want to create new amenities
     except Exception as e:
         return jsonify({"message": str(e)}), 400
 
-    return jsonify({"message": "amenity creates!"}), 201 #status code 201: created successfully
+    return jsonify({"message": "amenity created!"}), 201 #status code 201: created successfully
 
 
 #this is for when you find the specific amenity via search
@@ -93,10 +121,13 @@ def find_amenity(id):
 
     return jsonify({
         "message": "amenity found",
-        "id": found_amenity.id,
-        "name": found_amenity.name,
-        "address" : found_amenity.address            
+        "id": found_amenity.amenity_id,
+        "name": found_amenity.amenity_name,
+        "address" : found_amenity.amenity_address            
     }), 200
+
+
+#TESTED UP TO HERE
 
 
 #when you want only questions for the specific amenity type
@@ -144,10 +175,16 @@ def add_review(): #when i want to create new amenities
 @app.route("/amenities/<int:id>/review_summary", methods = ["GET"])
 def get_review_summary(id):
     #this is where i get the review summaries with the percentages and overall ratings
-    questions = Question.query.join(Amenity_type).join(Amenity)\
-        .filter(Amenity.id == id).all()
+    # questions = Question.query.join(Amenity_type).join(Amenity)\
+    #     .filter(Amenity.id == id).all()
     
+    specific_amenity = Amenity.query.get(id)
+
     #add an error thing here so that i can see if it works on the client
+    if not specific_amenity:
+        return jsonify({"message": "amenity not found, can't display summary"}), 404
+    
+    questions = Question.query.filter_by(amenity_type_id=specific_amenity.amenity_type_id).all()
 
     summary = {}
 
@@ -163,7 +200,7 @@ def get_review_summary(id):
             QuestionAnswer.answer == "y"
         ).count()
 
-        percentage = (yes_count / total * 100) if total > 0 else 0
+        percentage = ((yes_count / total) * 100) if total > 0 else 0
 
         summary[question.text] = round(percentage, 2)
 
