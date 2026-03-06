@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react'
 import Searchbar from './searchBar'
-import Loginform from './loginComponents/loginForm'
+import LoginForm from './loginComponents/loginForm'
+import AmenityList from './homepageComponents/amenityList'
 import './App.css'
 
 function App() {
   const [amenity_types, setAmenityTypes] = useState([])
+  const [amenities, setAmenities] = useState([])
 
   useEffect(() => {
-    //wanna fetch the amenity types first since frontend needs to know them
+    //everything the website needs to store
     fetchAmenityTypes()
+    fetchAmenities()
   }, [])
 
   const fetchAmenityTypes = async () => {
@@ -18,15 +21,20 @@ function App() {
     console.log(data.amenity_types)
   }
 
+  const fetchAmenities = async () => {
+    const response = await fetch("http://127.0.0.1:5000/amenities")
+    const data = await response.json()
+    setAmenities(data.amenities)
+    console.log(data.amenities)
+  }
+
   return (
     <>
 
-     {/* <Searchbar/> */}
-
-    <div className="app">
-        <h1 className= "homePageTitle">WELCOME TO CITY GEMS!</h1>
-      </div>
-      <Loginform/>
+        {/*<Searchbar/> */}
+        {/* <LoginForm/> */}
+        <AmenityList amenities = {amenities}/>
+        
 
 
 
