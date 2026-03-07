@@ -1,4 +1,8 @@
 import {useState, ustState} from "react"
+import {Link} from 'react-router-dom'
+
+//THIS WILL BE SLIGHTLY DIFFERENT TO THE SIGNUP FORM BECAUSE WHEN YOU PRESS THE SUBMIT
+//IT SHOULD NAVIGATE TO THE HOMEPAGE RATHER THAN CREATE A NEW STUDENT
 
 const LoginForm = ({}) => {
     const [studentEmail, setStudentEmail] = useState("")
@@ -23,7 +27,19 @@ const LoginForm = ({}) => {
                 
             </div>
         </form>
-        <button type= "submit" value = "submit" ></button>
+        <Link to= "/amenities">
+            <button type= "submit">Log in</button>
+        </Link>
+        <br/>
+        <br/>
+        <div>
+            Don't have an account? Click here to sign up!
+            <br/>
+            <Link to= "/signup">
+                <button>Sign Up</button>
+            </Link>
+            
+        </div>
         </div>
 
     )

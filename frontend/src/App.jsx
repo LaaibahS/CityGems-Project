@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import Searchbar from './searchBar'
-import LoginForm from './loginComponents/loginForm'
-import AmenityList from './homepageComponents/amenityList'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import LoginForm from './components/loginComponents/loginForm'
+import AmenityList from './components/homePageComponents/AmenityList'
+import SignupForm from './components/loginComponents/signupForm'
 import './App.css'
 
 function App() {
@@ -30,10 +31,16 @@ function App() {
 
   return (
     <>
+      <Router>
+        <Routes>
+          <Route path = "/" element = {<LoginForm/>} />
+          <Route path = "/signup" element = {<SignupForm/>} />
+        <Route path = "/amenities" element = {<AmenityList amenities = {amenities}/>} />
+        {/* <SignupForm/> */}
+        </Routes>
+      </Router>
+        
 
-        {/*<Searchbar/> */}
-        {/* <LoginForm/> */}
-        <AmenityList amenities = {amenities}/>
         
 
 

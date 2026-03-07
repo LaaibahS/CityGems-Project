@@ -23,10 +23,12 @@ const AmenityList = ({amenities}) => {
         //         </tbody>
         //     </table>
         // </div>
+
+        //show the amenity name and its address underneath
         <div>
             {amenities.map((amenity) =>(
                 <h3 key = {amenity.amenityId}>{amenity.amenityName}
-                    <h4 >{amenity.amenityAddress}</h4>
+                    <div >{amenity.amenityAddress}</div>
                 </h3>
             ))}
         </div>
