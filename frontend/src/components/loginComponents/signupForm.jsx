@@ -34,22 +34,22 @@ const SignupForm = ({}) => {
 
     return(      
         <div className="app">
-          <h1 className= "homePageTitle">WELCOME TO CITY GEMS!</h1>
+          <h1 className= "SignupPageTitle">THANKS FOR JOINING CITY GEMS!</h1>
         
         <form onSubmit = {handleSubmit}>
             <div>
                 <label htmlFor = "studentEmail">Student email: </label>
-                <input type= "email" id= "studentEmail" value = {studentEmail} onChange={(e) => setStudentEmail(e.target.value)}></input>
+                <input type= "email" id= "studentEmail" value = {studentEmail} onChange={(e) => setStudentEmail(e.target.value)} required></input>
                 <br/>
                 <label htmlFor = "studentPassword">Student Password: </label>
-                <input type = "password" id = "studentPassword" value = {studentPassword} onChange={(e) => setStudentPassword(e.target.value)}></input>
+                <input type = "password" id = "studentPassword" value = {studentPassword} onChange={(e) => setStudentPassword(e.target.value)} required></input>
                 
             </div>
             <br/>
+            <button type= "submit">Sign up</button>
             <Link to= '/'>
-                <button type= "submit">Sign up</button>
+                <button type= "submit">Back to login</button>
             </Link>
-            
         </form>
         </div>
 

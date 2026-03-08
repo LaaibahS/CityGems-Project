@@ -1,5 +1,5 @@
-import {useState, ustState} from "react"
-import {Link} from 'react-router-dom'
+import {useState} from "react"
+import {Link, useNavigate} from 'react-router-dom'
 
 //THIS WILL BE SLIGHTLY DIFFERENT TO THE SIGNUP FORM BECAUSE WHEN YOU PRESS THE SUBMIT
 //IT SHOULD NAVIGATE TO THE HOMEPAGE RATHER THAN CREATE A NEW STUDENT
@@ -8,28 +8,57 @@ const LoginForm = ({}) => {
     const [studentEmail, setStudentEmail] = useState("")
     const [studentPassword, setStudentPassword] = useState("")
 
+    const navigate = useNavigate()
+    
+    const handleSubmit = async (e) => {
+        console.log("entering submit function")
+        e.preventDefault()
 
-    function handleSubmit(){
-        //NEED TO PUT THE LOGIC FOR HANDLING SUBMISSION OF LOGIN FORM HERE
+        const data = {
+            studentEmail,
+            studentPassword
+        }
+
+        const url = "http://127.0.0.1:5000/login"
+        const options = {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }
+        const response = await fetch(url, options)
+
+        if(response.status !== 200){
+            const error = await response.json()
+            alert(error.message)
+        }else{
+            console.log("going to the homepage")
+            navigate("/home")
+        }
+
     }
 
+    // THE LOGIN BUTTON NEEDS A CONDITION THAT CHECKS WHTHER YOUR CREDENTIALS ARE VALID BEFORE REDIRECTING TO HOMEPAGE!!!!
     return(      
-        <div className="app">
-          <h1 className= "homePageTitle">WELCOME TO CITY GEMS!</h1>
+        <div className = "app">
+          <h1 className= "LoginPageTitle">WELCOME TO CITY GEMS!</h1>
         
         <form onSubmit = {handleSubmit}>
             <div>
-                <label htmlFor = "studentEmail">Student email:</label>
-                <input type= "email" id= "studentEmail"></input>
+                <label htmlFor = "studentEmail" >Student email:</label>
+                <input type= "email" id= "studentEmail" value = {studentEmail} onChange={(e) => setStudentEmail(e.target.value)} required></input>
                 <br/>
                 <label htmlFor = "studentPassword">Student Password: </label>
-                <input type = "password" id = "studentPassword"></input>
+                <input type = "password" id = "studentPassword" value = {studentPassword} onChange={(e) => setStudentPassword(e.target.value)} required></input>
                 
             </div>
-        </form>
-        <Link to= "/amenities">
+            <br/>
             <button type= "submit">Log in</button>
-        </Link>
+        </form>
+        {/* <Link to= "/home">
+            <button type= "submit">Log in</button>
+        </Link> */}
         <br/>
         <br/>
         <div>
@@ -41,34 +70,6 @@ const LoginForm = ({}) => {
             
         </div>
         </div>
-
     )
 }
 export default LoginForm
-
-
-
-
-
-
-
-
-
-
-
-//remembered that this is the html version of forms and not react version
-
-// function LoginForm(){
-//     return (
-//         //where do i send the action again??
-//         <form method = "post" action = "">
-//             <label for = "studentEmail">Student email:</label>
-//             <input type= "email" id= "studentEmail"></input>
-//             <br/>
-//             <label for = "studentPassword">Student Password: </label>
-//             <input type = "password" id = "studentPassword"></input>
-//         </form>
-  
-//     )
-// }
-// export default LoginForm

@@ -35,10 +35,10 @@ function App() {
         <Routes>
           <Route path = "/" element = {<LoginForm/>} />
           <Route path = "/signup" element = {<SignupForm/>} />
-        <Route path = "/amenities" element = {<AmenityList amenities = {amenities}/>} />
-        {/* <SignupForm/> */}
+          <Route path = "/home" element = {<AmenityList amenities = {amenities}/>} />
         </Routes>
       </Router>
+      {/* <SignupForm/> */}
         
 
         
