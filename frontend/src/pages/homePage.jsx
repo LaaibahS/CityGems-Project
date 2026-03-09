@@ -1,6 +1,7 @@
 import AmenityList from "../components/homePageComponents/AmenityList"; 
 import EmbedMapsAPI from "../components/homePageComponents/EmbedMapsApi";
 import SearchBar from "../components/homePageComponents/searchBar";
+import FilterButtons from "../components/homePageComponents/FilterButtons";
 import { useState, useEffect } from "react";
 
 function HomePage(){
@@ -19,16 +20,20 @@ function HomePage(){
 
     return(
         <div className="homepage">
+            <div>
+                <SearchBar/>
+            </div>
+            
             <div className="homeAmenityList">
                 <AmenityList amenities = {amenities}/>
             </div>
+
+            <div className ="filterButtons">
+                <FilterButtons/>
+            </div>
             
-            {/* <div className= "homeMap" >
+            <div className= "homeMap" >
                 <EmbedMapsAPI/>
-            </div> */}
-            
-            <div>
-                <SearchBar/>
             </div>
         </div>
         

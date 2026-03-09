@@ -8,13 +8,13 @@
 .homeMap {
   position: relative;
   left: 380px;
-  top:-200px
+  top:-280px
 }
 
 .homeAmenityList {
   position: relative;
   right: 500px;
-  top: -100px;
+  top: 100px;
 }
 
 #studentEmail {
@@ -29,11 +29,13 @@
 
 .homeSearchBar {
   background-color: rgb(255, 255, 255);
+  font-family: futara;
   border-radius: 10px;
   position: relative;
-  right: 500px;
-  top: -380px;
+  right: 300px;
+  top: 0px;
   height: 2.5rem;
+  width: 36rem;
   padding: 0 15px;
   display: flex;
   align-items: center;
@@ -56,3 +58,24 @@
   color: #0b938c;
 }
 
+.filterButtons{
+  position:relative;
+  top: -150px;
+  left: -300px;
+}
+
+.homeFilters{
+  display:flex;
+}
+
+.foodButton{
+  margin-left: 40px;
+}
+
+.studyButton{
+  margin-left: 110px;
+}
+
+.activityButton{
+  margin-left: 110px
+}
