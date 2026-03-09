@@ -49,7 +49,7 @@ def new_login():
         db.session.commit()
     except Exception as e:
         return jsonify({"message": str(e)}), 400
-
+    
     return jsonify({"message": "student login created!"}), 201 #status code 201: created successful
 
 

@@ -9,8 +9,8 @@ function EmbedMapsAPI(){ //need to add props here so that the amenity place ids 
   return (
     <div>
       <iframe
-        width="600"
-        height="750"
+        width="750"
+        height="730"
         style={{border:0}}
         referrerPolicy="no-referrer-when-downgrade"
         src={`https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=place_id:${originPlaceId}&destination=place_id:ChIJdZDu2VobdkgRpYFNHN_eQXg`}

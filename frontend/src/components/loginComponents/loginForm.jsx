@@ -39,9 +39,9 @@ const LoginForm = ({}) => {
     return(      
         <div className = "app">
           <h1 className= "LoginPageTitle">WELCOME TO CITY GEMS!</h1>
-        
+         
         <form onSubmit = {handleSubmit}>
-            <div>
+            <div className = "loginInput">
                 <label htmlFor = "studentEmail" >Student email:</label>
                 <input type= "email" id= "studentEmail" value = {studentEmail} onChange={(e) => setStudentEmail(e.target.value)} required></input>
                 <br/>
@@ -55,10 +55,11 @@ const LoginForm = ({}) => {
         <br/>
         <br/>
         <div>
-            Don't have an account? Click here to sign up!
-            <br/>
+            <div className= "linkToSignUp">
+                Don't have an account? Click here to sign up!
+            </div>
             <Link to= "/signup">
-                <button>Sign Up</button>
+                <button>Sign up</button>
             </Link>
         </div>
         </div>
