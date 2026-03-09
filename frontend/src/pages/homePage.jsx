@@ -1,12 +1,12 @@
 import AmenityList from "../components/homePageComponents/AmenityList"; 
 import EmbedMapsAPI from "../components/homePageComponents/EmbedMapsApi";
+import SearchBar from "../components/homePageComponents/searchBar";
 import { useState, useEffect } from "react";
 
 function HomePage(){
     const [amenities, setAmenities] = useState([])
     
       useEffect(() => {
-        //everything the website needs to store
         fetchAmenities()
       }, [])
 
@@ -18,9 +18,18 @@ function HomePage(){
   }
 
     return(
-        <div>
-            {/* <AmenityList amenities = {amenities}/> */}
-            <EmbedMapsAPI/>
+        <div className="homepage">
+            <div className="homeAmenityList">
+                <AmenityList amenities = {amenities}/>
+            </div>
+            
+            {/* <div className= "homeMap" >
+                <EmbedMapsAPI/>
+            </div> */}
+            
+            <div>
+                <SearchBar/>
+            </div>
         </div>
         
     )

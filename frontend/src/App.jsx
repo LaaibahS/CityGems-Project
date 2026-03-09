@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import LoginForm from './components/loginComponents/loginForm'
-import AmenityList from './components/homePageComponents/AmenityList'
-import SignupForm from './components/loginComponents/signupForm'
 
 import LoginPage from './pages/loginPage'
 import HomePage from './pages/homePage'
