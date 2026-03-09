@@ -3,16 +3,20 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import LoginForm from './components/loginComponents/loginForm'
 import AmenityList from './components/homePageComponents/AmenityList'
 import SignupForm from './components/loginComponents/signupForm'
+
+import LoginPage from './pages/loginPage'
+import HomePage from './pages/homePage'
+import SignupPage from './pages/signupPage'
 import './App.css'
 
 function App() {
   const [amenity_types, setAmenityTypes] = useState([])
-  const [amenities, setAmenities] = useState([])
+  //const [amenities, setAmenities] = useState([])
 
   useEffect(() => {
     //everything the website needs to store
     fetchAmenityTypes()
-    fetchAmenities()
+    //fetchAmenities()
   }, [])
 
   const fetchAmenityTypes = async () => {
@@ -22,23 +26,23 @@ function App() {
     console.log(data.amenity_types)
   }
 
-  const fetchAmenities = async () => {
-    const response = await fetch("http://127.0.0.1:5000/amenities")
-    const data = await response.json()
-    setAmenities(data.amenities)
-    console.log(data.amenities)
-  }
+  // const fetchAmenities = async () => {
+  //   const response = await fetch("http://127.0.0.1:5000/amenities")
+  //   const data = await response.json()
+  //   setAmenities(data.amenities)
+  //   console.log(data.amenities)
+  // }
 
   return (
     <>
       <Router>
         <Routes>
-          <Route path = "/" element = {<LoginForm/>} />
-          <Route path = "/signup" element = {<SignupForm/>} />
-          <Route path = "/home" element = {<AmenityList amenities = {amenities}/>} />
+          <Route path = "/" element = {<LoginPage/>} />
+          <Route path = "/signup" element = {<SignupPage/>} />
+          <Route path = "/home" element = {<HomePage/>} />
         </Routes>
       </Router>
-      {/* <SignupForm/> */}
+      {/* <LoginPage/> */}
         
 
         
