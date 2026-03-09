@@ -1,15 +1,12 @@
 import {useState} from "react"
 import {Link, useNavigate} from 'react-router-dom'
 
-//THIS WILL BE SLIGHTLY DIFFERENT TO THE SIGNUP FORM BECAUSE WHEN YOU PRESS THE SUBMIT
-//IT SHOULD NAVIGATE TO THE HOMEPAGE RATHER THAN CREATE A NEW STUDENT
-
 const LoginForm = ({}) => {
     const [studentEmail, setStudentEmail] = useState("")
     const [studentPassword, setStudentPassword] = useState("")
 
     const navigate = useNavigate()
-    
+
     const handleSubmit = async (e) => {
         console.log("entering submit function")
         e.preventDefault()
@@ -39,7 +36,6 @@ const LoginForm = ({}) => {
 
     }
 
-    // THE LOGIN BUTTON NEEDS A CONDITION THAT CHECKS WHTHER YOUR CREDENTIALS ARE VALID BEFORE REDIRECTING TO HOMEPAGE!!!!
     return(      
         <div className = "app">
           <h1 className= "LoginPageTitle">WELCOME TO CITY GEMS!</h1>
@@ -56,9 +52,6 @@ const LoginForm = ({}) => {
             <br/>
             <button type= "submit">Log in</button>
         </form>
-        {/* <Link to= "/home">
-            <button type= "submit">Log in</button>
-        </Link> */}
         <br/>
         <br/>
         <div>
@@ -67,7 +60,6 @@ const LoginForm = ({}) => {
             <Link to= "/signup">
                 <button>Sign Up</button>
             </Link>
-            
         </div>
         </div>
     )
