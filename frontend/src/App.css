@@ -11,10 +11,53 @@
   top:-280px
 }
 
-.homeAmenityList {
+/* .homeAmenityListContainer { */
+.amenityList{
   position: relative;
-  right: 500px;
+  /* right: 500px; */
   top: 100px;
+  background-color: rgb(85, 76, 76);
+  outline:#ff0808;
+  color: rgb(0, 0, 0);
+  text-align:left;
+}
+
+.amenities{
+  background-color: white;
+  position:relative;
+}
+
+.reviewSummaries{
+  position: flex;
+  gap: 25px;
+}
+
+.circle1{
+  width:85px;
+  height:85px;
+  border-radius: 50%;
+  background-color: aquamarine;
+}
+
+.circle2{
+  width:85px;
+  height:85px;
+  border-radius: 50%;
+  background-color: rgb(246, 161, 57);
+}
+
+.circle3{
+  width:85px;
+  height:85px;
+  border-radius: 50%;
+  background-color: rgb(255, 227, 47);
+}
+
+.ratingCircle{
+  width:115px;
+  height:115px;
+  border-radius: 50%;
+  background-color: rgb(52, 242, 188);
 }
 
 #studentEmail {

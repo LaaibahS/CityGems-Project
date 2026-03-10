@@ -25,11 +25,24 @@ const AmenityList = ({amenities}) => {
         // </div>
 
         //show the amenity name and its address underneath
-        <div>
+        <div className="amenityList">
             {amenities.map((amenity) =>(
-                <h3 key = {amenity.amenityId}>{amenity.amenityName}
-                    <div >{amenity.amenityAddress}</div>
-                </h3>
+                <div className= "amenities">
+                     <h3 key = {amenity.amenityId}>{amenity.amenityName}</h3>
+                    <div className="addresses">
+                        <h5>
+                            {amenity.amenityAddress}
+                        </h5>
+                    </div>
+                    <div className="reviewSummaries">
+                        <div className="circle1">placeholder1</div>
+                        <div className="circle2">placeholder2</div>
+                        <div className="circle3">placeholder3</div>
+                        <div className= "ratingCircle">average rating</div>
+                    </div>
+                    
+                </div>
+               
             ))}
         </div>
     )

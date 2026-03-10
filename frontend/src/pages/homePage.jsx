@@ -24,17 +24,17 @@ function HomePage(){
                 <SearchBar/>
             </div>
             
-            <div className="homeAmenityList">
+            <div className="homeAmenityListContainer">
                 <AmenityList amenities = {amenities}/>
             </div>
-
+{/* 
             <div className ="filterButtons">
                 <FilterButtons/>
             </div>
             
             <div className= "homeMap" >
                 <EmbedMapsAPI/>
-            </div>
+            </div> */}
         </div>
         
     )
