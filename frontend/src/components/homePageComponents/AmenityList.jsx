@@ -40,6 +40,12 @@ const AmenityList = ({amenities}) => {
                         <div className="circle3">placeholder3</div>
                         <div className= "ratingCircle">average rating</div>
                     </div>
+                    <div className="directionsButton">
+                        <button>Get Directions</button>
+                    </div>
+                    <div>
+                        <button>Add Review</button>
+                    </div>
                     
                 </div>
                
