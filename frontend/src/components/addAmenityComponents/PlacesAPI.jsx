@@ -1,28 +1,37 @@
-import { GoogleMap, LoadScript, Marker, Autocomplete, useJsApiLoader } from '@react-google-maps/api'
+import { GoogleMap, LoadScript, Marker, Autocomplete} from '@react-google-maps/api'
+import { useState,useRef } from 'react'
+
+const mapContainerStyle ={
+    height: "900px",
+    width: "500px"
+}
+
+//geometry values for city uni
+const centre = {
+    lat: 51.5280,
+    lng: -0.1024
+}
 
 function PlacesAPI (){
 
-    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
-    const originPlaceId = import.meta.env.VITE_MAP_ORIGIN_PLACE_ID
+    const [markerPos, setMarkerPos] = useState(null);
+    const autocompleteRef = useRef(null)
 
-    // const { isLoaded } = useJsApiLoader({
-    //     id: 'google-map-script',
-    //     googleMapsApiKey: apiKey
-    // })
-    //  console.log(isLoaded)
+    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY2
 
     return(
          <div>
-            {/* <iframe
-                width="750"
-                height="730"
-                style={{border:0}}
-                referrerPolicy="no-referrer-when-downgrade"
-                src={`https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=place_id:${originPlaceId}&destination=place_id:ChIJdZDu2VobdkgRpYFNHN_eQXg`}
-                allowFullScreen>
-            </iframe> */}
-            <LoadScript/>
-            <GoogleMap></GoogleMap>
+            <LoadScript
+                googleMapsApiKey= {apiKey}
+                library = {["places"]}>
+                <GoogleMap
+                    mapContainerStyle={mapContainerStyle}
+                    center = {centre}
+                    zoom = {15}>
+                    <Marker
+                        position={centre}/>
+                </GoogleMap>
+            </LoadScript>
         </div>
     )
 }
