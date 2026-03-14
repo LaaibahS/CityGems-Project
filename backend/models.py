@@ -31,7 +31,7 @@ class Amenity(db.Model):
     amenity_id = db.Column(db.Integer, primary_key = True)
     amenity_name = db.Column(db.String(255), nullable = False, unique = False)
     amenity_address = db.Column(db.String(255), nullable = False, unique = True)
-    amenity_postcode = db.Column(db.String(255), nullable = False, unique = False)
+    amenity_place_id = db.Column(db.String(255), nullable = False, unique = False)
     amenity_type_id = db.Column(db.Integer, db.ForeignKey('amenity_type.type_id'), nullable=False)
     
     def to_json(self):
@@ -39,7 +39,7 @@ class Amenity(db.Model):
             "amenityId": self.amenity_id,
             "amenityName":  self.amenity_name,
             "amenityAddress": self.amenity_address,
-            "amenityPostcode": self.amenity_postcode,
+            "amenityPostId": self.amenity_place_id,
             "amenityTypeId": self.amenity_type_id
         }
     

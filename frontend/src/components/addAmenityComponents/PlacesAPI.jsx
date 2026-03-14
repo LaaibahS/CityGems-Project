@@ -67,6 +67,7 @@ function PlacesAPI ({setAddAmenityForm}){
          <div>
             <Autocomplete 
             onLoad={(autocomplete) => {(autocompleteRef.current = autocomplete)
+                autocomplete.setBounds(londonBounds)
                 if(mapRef.current){
                     autocomplete.bindTo("bounds", mapRef.current)
                 }

@@ -5,9 +5,9 @@ import {Link} from 'react-router-dom'
 function AddButton(){
     return(
         <div>
-            <Link to="/home">
-                <button>Add</button>
-            </Link>
+            {/* <Link to="/home"> */}
+                <button type = "submit">Add</button>
+            {/* </Link> */}
             
         </div>
     )

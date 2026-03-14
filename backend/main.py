@@ -47,10 +47,11 @@ def new_login():
     try:
         db.session.add(new_student)
         db.session.commit()
+        return jsonify({"message": "student login created!"}), 201 #status code 201: created successful
     except Exception as e:
         return jsonify({"message": str(e)}), 400
     
-    return jsonify({"message": "student login created!"}), 201 #status code 201: created successful
+    
 
 
 #WILL NEED GET /AMENITY_TYPE ENDPOINT HERE ASWELL BECAUSE I NEED TO MATCH THE CORRECT TYPE IDS
@@ -69,7 +70,6 @@ def get_amenities_by_type(id): #will be used when you want to filter amenities f
         return jsonify({"message": "amenities not found"}), 404
     
     return jsonify([{
-        "id": a.amenity_id,
         "name": a.amenity_name,
         "address": a.amenity_address    
     } for a in amenities
@@ -86,21 +86,41 @@ def get_amenities():
 
 
     
-@app.route("/amenities", methods = ["POST"])
+@app.route("/add_amenities", methods = ["POST"])
 def add_amenity(): #when i want to create new amenities
     #btw when i send the amenity to the backend from the frontend, i'll need to refresh the page or just append the new amenity to the amenity list somehow
 
     amenity_name = request.json.get("amenityName")
     amenity_address = request.json.get("amenityAddress")
-    amenity_postcode = request.json.get("amenityPostcode")
+    amenity_place_id = request.json.get("amenityPlaceId")
     amenity_type_id = request.json.get("amenityTypeId")
 
-    if not amenity_name or not amenity_address or not amenity_postcode or not amenity_type_id:
+    # if not amenity_name or not amenity_address or not amenity_place_id or not amenity_type_id:
+    #     return(
+    #         jsonify({"message": "insufficient or wrong amenity data provided"}), 400 
+    #     )
+
+    if not amenity_name:
         return(
-            jsonify({"message": "insufficient or wrong amenity data provided"}), 400 
+            jsonify({"message": "issue with name"}), 400 
         )
     
-    new_amenity = Amenity(amenity_name = amenity_name, amenity_address=amenity_address, amenity_postcode=amenity_postcode, amenity_type_id=amenity_type_id)
+    if not amenity_address:
+        return(
+            jsonify({"message": "issue with address"}), 400 
+        )
+    
+    if not amenity_place_id:
+        return(
+            jsonify({"message": "issue with place id"}), 400 
+        )
+    
+    if not amenity_type_id:
+        return(
+            jsonify({"message": "issue with type"}), 400 
+        )
+    
+    new_amenity = Amenity(amenity_name = amenity_name, amenity_address=amenity_address, amenity_place_id=amenity_place_id, amenity_type_id=amenity_type_id)
     
     try:
         db.session.add(new_amenity)
@@ -121,7 +141,6 @@ def find_amenity(id):
 
     return jsonify({
         "message": "amenity found",
-        "id": found_amenity.amenity_id,
         "name": found_amenity.amenity_name,
         "address" : found_amenity.amenity_address            
     }), 200
