@@ -1,8 +1,8 @@
-function NameInput(){
+function NameInput({addAmenityForm}){
     return(
         <div>
             <h3>Amenity Name:</h3>
-            <input placeholder="e.g. Sainsbury's"></input>
+            <input value= {addAmenityForm.amenityName} placeholder="search on the map" readOnly></input>
         </div>
     )
 }
