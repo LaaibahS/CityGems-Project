@@ -1,0 +1,147 @@
+.homePage{
+    position: relative;
+}
+
+
+
+/* left side of the homepage */
+.homeLeft{
+    position: absolute;
+    left: 30px;
+    top: 20px;
+}
+
+/* right side of the homepage */
+.homeRight{
+    position: absolute;
+    left: 50%;
+    top: 0px;
+}
+
+
+
+/* searchbar styling */
+.homeSearchBar {
+  background-color: rgb(255, 255, 255);
+  font-family: futara;
+  border-radius: 10px;
+  height: 2.5rem;
+  width: 36rem;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+}
+
+.input{
+  background-color: transparent;
+  height: 90%;
+  width: 100%;
+  border: none;
+  color: rgb(0, 0, 0);
+  margin-left: 5px;
+}
+
+.input:focus{
+  outline: none;
+}
+
+.searchIcon{
+  color: #0b938c;
+}
+
+
+
+/* styling for filter buttons */
+.filterButtons{
+  position:relative;
+  left: 20px;
+  top: 15px;
+}
+
+.homeFilters{
+  display:flex;
+  top: 50px;
+}
+
+.foodButton{
+  margin-left: 40px;
+}
+
+.studyButton{
+  margin-left: 110px;
+}
+
+.activityButton{
+  margin-left: 110px
+} 
+
+
+
+
+/* for the review circles */
+.reviewSummaries{
+    display: flex;
+    gap: 15px;
+}
+
+.circle1{
+  width:85px;
+  height:85px;
+  border-radius: 50%;
+  background-color: aquamarine;
+}
+
+.circle2{
+  width:85px;
+  height:85px;
+  border-radius: 50%;
+  background-color: rgb(246, 161, 57);
+}
+
+.circle3{
+  width:85px;
+  height:85px;
+  border-radius: 50%;
+  background-color: rgb(255, 227, 47);
+}
+
+.ratingCircle{
+  width:85px;
+  height:85px;
+  border-radius: 50%;
+  background-color: rgb(52, 242, 188);
+}
+
+.directionsButton{
+    position: relative;
+    left: 425px;
+    top: -90px;
+}
+
+.addReviewButton{
+    position:relative;
+    left: 5px;
+}
+
+
+
+/* shifting space between amenityList and filter buttons */
+.homeAmenityListContainer{
+  position: relative;
+  top: 10px;
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+  text-align:left;
+}
+
+
+/* addAmenity styling */
+.addAmenityHome{
+    position: relative;
+    top: 15px;
+}
+
+
+.homeMap{
+    position: fixed;
+}

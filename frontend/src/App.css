@@ -5,19 +5,18 @@
   text-align: center;
 }
 
-.homeMap {
+/* .homeMap {
   position: relative;
   left: 380px;
   top:-280px
-}
+} */
 
 /* .homeAmenityListContainer { */
-.amenityList{
+/* .amenityList{
   position: relative;
-  /* right: 500px; */
+  right: 500px;
   top: 100px;
   background-color: rgb(85, 76, 76);
-  outline:#ff0808;
   color: rgb(0, 0, 0);
   text-align:left;
 }
@@ -27,12 +26,16 @@
   position:relative;
 }
 
+.addresses{
+  vertical-align: top;
+}
+
 .reviewSummaries{
   position: flex;
   gap: 25px;
-}
+} */
 
-.circle1{
+/* .circle1{
   width:85px;
   height:85px;
   border-radius: 50%;
@@ -58,7 +61,7 @@
   height:115px;
   border-radius: 50%;
   background-color: rgb(52, 242, 188);
-}
+} */
 
 #studentEmail {
   position: relative;
@@ -70,7 +73,7 @@
   top: -10px;
 }
 
-.homeSearchBar {
+/* .homeSearchBar {
   background-color: rgb(255, 255, 255);
   font-family: futara;
   border-radius: 10px;
@@ -99,9 +102,16 @@
 
 .searchIcon{
   color: #0b938c;
-}
+} */
 
-.filterButtons{
+
+
+
+
+
+
+
+/*.filterButtons{
   position:relative;
   top: -150px;
   left: -300px;
@@ -121,4 +131,4 @@
 
 .activityButton{
   margin-left: 110px
-}
+} */ 
