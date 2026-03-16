@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const AmenityList = ({amenities}) => {
     return(
         //show the amenity name and its address underneath
@@ -18,7 +20,10 @@ const AmenityList = ({amenities}) => {
                     </div>
                     <div className="directionsButton">
                         <div className="addReviewButton">
-                            <button>Add Review</button>
+                            <Link to= "/addReview">
+                                <button>Add Review</button>
+                            </Link>
+                            
                         </div>
                         <br/>
                         <div>

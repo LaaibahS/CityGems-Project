@@ -1,0 +1,16 @@
+function TotalRatingDropDownMenu(){
+    return(
+        <div className="ratingDropDown">
+            <label htmlFor="rating"> Rate this amenity on a scale of 1-5:</label>
+            <p>Note: 1 being the lowest and 5 being the highest</p>
+            <select id= "rating" name= "rating">
+                    <option value= "1">1</option>
+                    <option value= "2">2</option>
+                    <option value= "3">3</option>
+                    <option value= "4">4</option>
+                    <option value= "5">5</option>
+            </select>
+            </div>
+    )
+}
+export default TotalRatingDropDownMenu

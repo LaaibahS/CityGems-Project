@@ -3,11 +3,12 @@ import EmbedMapsAPI from "../components/homePageComponents/EmbedMapsApi";
 import SearchBar from "../components/homePageComponents/searchBar";
 import FilterButtons from "../components/homePageComponents/FilterButtons";
 import AddAmenityButton from "../components/homePageComponents/addAmenityButton";
-import '../homePage.css'
+import '../styles/homePage.css'
 import { useState, useEffect } from "react";
 
 function HomePage(){
     const [amenities, setAmenities] = useState([])
+ 
     
       useEffect(() => {
         fetchAmenities()
@@ -34,7 +35,7 @@ function HomePage(){
                 <div className="homeAmenityListContainer">
                     <AmenityList amenities = {amenities}/>
                 </div>
-
+                
                 <div className= "addAmenityHome">
                     <AddAmenityButton/>
                 </div>

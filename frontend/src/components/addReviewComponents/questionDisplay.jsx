@@ -2,8 +2,8 @@ function QuestionDisplay(question){
     return(
         <div>
             {/*a placeholder to put the questions here*/}
-            <div>
-                
+            <div className= "questions">
+                Question goes here
             </div>
         </div>
     )

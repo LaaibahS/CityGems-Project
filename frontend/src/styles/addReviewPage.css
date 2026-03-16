@@ -1,0 +1,17 @@
+.questions{
+    background-color: rgb(211, 209, 209);
+    width: 300px;
+    height: 50px;
+    color: black;
+    font-weight: bold;
+}
+
+.answerButtons{
+    display: flex;
+    gap: 30px;
+    left:30px;
+}
+
+.ratingDropDown{
+    color: rgb(0, 0, 0);
+}
