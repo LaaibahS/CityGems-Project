@@ -3,6 +3,9 @@ import AddButton from "../components/addAmenityComponents/AddButton";
 import NameInput from "../components/addAmenityComponents/NameInput";
 import AddAddress from "../components/addAmenityComponents/AddAddress";
 import PlacesAPI from "../components/addAmenityComponents/PlacesAPI";
+import BackButton from "../components/addAmenityComponents/BackButton";
+
+import "../styles/addAmenityPage.css"
 
 import { useState } from "react";
 
@@ -37,27 +40,34 @@ function AddAmenityPage(){
     }
 
     return(
-        <div>
+        <div className = "addAmenityPage" >
             <form onSubmit={handleSubmit}>
-                <div>
-                    <TypeDropDownMenu setAddAmenityForm= {setAddAmenityForm} />
+                <div className="leftSide">
+                    <div>
+                        <TypeDropDownMenu setAddAmenityForm= {setAddAmenityForm} />
+                    </div>
+                    <br/>
+                    <div>
+                        <AddAddress addAmenityForm= {addAmenityForm}/>
+                    </div>
+                    <br/>
+                    <div>
+                        <NameInput addAmenityForm= {addAmenityForm}/>
+                    </div>
+                    <br/>
+                    <div>
+                        <AddButton addAmenityForm= {addAmenityForm}/>
+                    </div> 
+                    <div>
+                        <BackButton/>
+                    </div>
+                </div> 
+                <div className ="rightSide">
+                    <br/>
+                    <div>
+                        <PlacesAPI setAddAmenityForm={setAddAmenityForm}/>
+                    </div>
                 </div>
-                <br/>
-                <div>
-                    <AddAddress addAmenityForm= {addAmenityForm}/>
-                </div>
-                <br/>
-                <div>
-                    <NameInput addAmenityForm= {addAmenityForm}/>
-                </div>
-                <br/>
-                <div>
-                    <PlacesAPI setAddAmenityForm={setAddAmenityForm}/>
-                </div>
-                <br/>
-                <div>
-                    <AddButton addAmenityForm= {addAmenityForm}/>
-                </div>  
             </form>          
         </div>
     )
