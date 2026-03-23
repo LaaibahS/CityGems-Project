@@ -26,14 +26,14 @@ function TypeDropDownMenu({setAddAmenityForm}){
            
                 <label for="amenityType">Amenity Type: </label>
                 {/* <h3>Amenity Type:</h3> */}
-                {/* <input onChange= {handleSelect} list="types" id="amenityType" name="amenityType"/> */}
-                <select id= "amenityType" name= "amenityType" onChange={handleSelect}>
-                    {/* <datalist id="types"> */}
+                <input onChange= {handleSelect} list="types" id="amenityType" name="amenityType"/>
+                {/* <select id= "amenityType" name= "amenityType" onChange={handleSelect}> */}
+                    <datalist id="types">
                             <option value="Food">Food</option>
                             <option value="Study">Study</option>
                             <option value="Activity">Activity</option>
-                    {/* </datalist> */}
-                </select>
+                    </datalist>
+                {/* </select> */}
             
         </div>
     )
