@@ -168,22 +168,12 @@ def get_questions_by_type(id):
 #to create reviews
 @app.route("/reviews", methods = ["POST"])
 def add_review(): #when i want to create new reviews
-
-    #the questionAnswer fields
-    # answer_button = request.json.get("answerButton")
-    # question_id = request.json.get("questionId")
     answer_list = request.json.get("answers")
-
 
     #the review fields
     overall_rating = request.json.get("overallRating")
     student_id = request.json.get("studentId")
     amenity_id = request.json.get("amenityId")
-
-    # if not answer_button or not question_id:
-    #     return (
-    #         jsonify({"message": "insufficient answer data provided. Can't make review"}), 400
-    #     )
 
     if not answer_list:
         jsonify({"message": "question answers not provided, cannot create review"}), 400

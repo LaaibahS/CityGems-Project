@@ -24,7 +24,7 @@ function TypeDropDownMenu({setAddAmenityForm}){
     return(
         <div>
            
-                <label for="amenityType">Amenity Type: </label>
+                <label htmlfor="amenityType">Amenity Type: </label>
                 {/* <h3>Amenity Type:</h3> */}
                 <input onChange= {handleSelect} list="types" id="amenityType" name="amenityType"/>
                 {/* <select id= "amenityType" name= "amenityType" onChange={handleSelect}> */}

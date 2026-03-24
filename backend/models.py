@@ -39,7 +39,7 @@ class Amenity(db.Model):
             "amenityId": self.amenity_id,
             "amenityName":  self.amenity_name,
             "amenityAddress": self.amenity_address,
-            "amenityPostId": self.amenity_place_id,
+            "amenityPlaceId": self.amenity_place_id,
             "amenityTypeId": self.amenity_type_id
         }
     

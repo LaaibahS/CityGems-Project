@@ -1,9 +1,17 @@
-function QuestionDisplay(question){
+import YesNoButtons from "./yesNoButtons"
+
+const QuestionDisplay = ({questions, setAnswers}) => {
+
     return(
         <div>
-            {/*a placeholder to put the questions here*/}
             <div className= "questions">
-                Question goes here
+                {questions.map((question) =>(
+                    <div className="questions" key = {question.id}>
+                        <h3 >{question.fullQuestions}</h3>
+                        <YesNoButtons questionId= {question.id} setAnswers={setAnswers}/>
+                        <br/>
+                    </div>
+                ))}
             </div>
         </div>
     )
