@@ -2,28 +2,35 @@ import QuestionDisplay from "../components/addReviewComponents/questionDisplay"
 import TotalRatingDropDownMenu from "../components/addReviewComponents/TotalRatingDropDownMenu"
 import AddReviewButton from "../components/addReviewComponents/AddReviewButton"
 import "../styles/AddReviewPage.css"
-import { useState, useEffect, use } from "react"
+import { useState, useEffect} from "react"
+import BackButton from "../components/addAmenityComponents/BackButton"
+import { Link } from "react-router-dom"
 
 //added places for the questions to go but in QuestionDisplay, need to extract the individual questions
 //may actually have to make the questions and answe buttons into a combined component
 // ^^ so that the answer buttons are linked directly to each question
 function AddReviewPage(){
 
+    //NOTE: to get the amenityID need to send the amenity details in state when 
+    //^^ "add review" button is clicked for a certain amenity
+    //NOTE: to get studentID, may need to flush the id in the backend and send to homepage
+    //^^ can then be sent to this page alongside amenityID
     const [addReviewForm, setAddReviewForm] = useState({
             amenityId: "",
             studentId: "",
-            overallRating: "",
+            overallRating: null,
             answers: []
         })
     
     const [questions, setQuestions] = useState([])
 
-    const [answers, setAnswers] = useState([])
+    // const [answers, setAnswers] = useState([])
      
         
     useEffect(() => {
         fetchQuestions()
-    }, [])
+        console.log("form data:", addReviewForm)
+    }, [addReviewForm])
     
     //so far just rendered questions for type 1, need to render the other types' questions too
     const fetchQuestions = async () => {
@@ -60,7 +67,7 @@ function AddReviewPage(){
         <div className="addReviewPage">
             <form onSubmit= {handleSubmit}>
                 <div className="questions">
-                    <QuestionDisplay questions = {questions} setAnswers= {setAnswers}/>
+                    <QuestionDisplay questions = {questions} setAddReviewForm= {setAddReviewForm}/>
                 </div>
                 <br/>
                 <div className="rating">
@@ -71,6 +78,10 @@ function AddReviewPage(){
                     <AddReviewButton/>
                 </div>
         </form>
+        <br/>
+        <Link to= "/home">
+            <BackButton/>
+        </Link>
         </div>
     )
 }

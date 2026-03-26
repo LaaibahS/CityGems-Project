@@ -1,6 +1,6 @@
 import YesNoButtons from "./yesNoButtons"
 
-const QuestionDisplay = ({questions, setAnswers}) => {
+const QuestionDisplay = ({questions, setAddReviewForm}) => {
 
     return(
         <div>
@@ -8,7 +8,8 @@ const QuestionDisplay = ({questions, setAnswers}) => {
                 {questions.map((question) =>(
                     <div className="questions" key = {question.id}>
                         <h3 >{question.fullQuestions}</h3>
-                        <YesNoButtons questionId= {question.id} setAnswers={setAnswers}/>
+                        <YesNoButtons questionId= {question.id} 
+                        setAddReviewForm={setAddReviewForm}/>
                         <br/>
                     </div>
                 ))}

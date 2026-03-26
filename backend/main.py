@@ -175,16 +175,20 @@ def add_review(): #when i want to create new reviews
     student_id = request.json.get("studentId")
     amenity_id = request.json.get("amenityId")
 
-    if not answer_list:
-        jsonify({"message": "question answers not provided, cannot create review"}), 400
+    if len(answer_list) != 3:
+        jsonify({"message": " all question answers not provided, cannot create review"}), 400
     
     if not isinstance(answer_list, list):
         jsonify({"message": "question answers not provided in a list, cannot create review"}), 400
 
-    if not overall_rating or not student_id or not amenity_id:
+    if not overall_rating:
         return(
-            jsonify({"message": "insufficient or wrong review data provided"}), 400
+            jsonify({"message": "no rating given"}), 400
         )
+    if not student_id or not amenity_id:
+        return(
+            jsonify({"message": "no student/amenity id"}), 400
+        ) 
     
     new_Review = Review(overall_rating=overall_rating, student_id=student_id, amenity_id=amenity_id)
     
