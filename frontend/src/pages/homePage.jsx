@@ -10,8 +10,6 @@ import { useState, useEffect } from "react";
 function HomePage(){
     const [amenities, setAmenities] = useState([])
  
-    
-
       useEffect(() => {
         fetchAmenities()
       }, [])
@@ -31,7 +29,7 @@ function HomePage(){
                 </div>
 
                 <div className ="filterButtons">
-                    <FilterButtons/>
+                    <FilterButtons setAmenities = {setAmenities}/>
                 </div>
 
                 <div className="homeAmenityListContainer">

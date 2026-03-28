@@ -67,17 +67,10 @@ def get_amenity_types():
 @app.route("/amenity_types/<int:id>/amenities", methods = ["GET"])
 def get_amenities_by_type(id): #will be used when you want to filter amenities for a certain type
     amenities = Amenity.query.filter_by(amenity_type_id = id).all() #need to match the amenity type to the id paramater then return the list of amenities
+    json_amenities = list(map(lambda x: x.to_json(), amenities)) #convert them into a list of json objects
+    return jsonify({"amenities": json_amenities})#return the list of json amenities
 
-    if not amenities:
-        return jsonify({"message": "amenities not found"}), 404
     
-    return jsonify([{
-        "name": a.amenity_name,
-        "address": a.amenity_address    
-    } for a in amenities
-    ]), 200
-
-
 
 
 @app.route("/amenities", methods = ["GET"])
@@ -102,25 +95,28 @@ def add_amenity(): #when i want to create new amenities
     #         jsonify({"message": "insufficient or wrong amenity data provided"}), 400 
     #     )
 
-    if not amenity_name:
+    if not amenity_type_id:
         return(
-            jsonify({"message": "issue with name"}), 400 
+            jsonify({"message": "no amenity type provided"}), 400 
         )
     
     if not amenity_address:
         return(
-            jsonify({"message": "issue with address"}), 400 
+            jsonify({"message": "no amenity address provided"}), 400 
+        )
+    
+
+    if not amenity_name:
+        return(
+            jsonify({"message": "no amenity name provided"}), 400 
         )
     
     if not amenity_place_id:
         return(
-            jsonify({"message": "issue with place id"}), 400 
+            jsonify({"message": "error: unable to store place_id of amenity"}), 400 
         )
     
-    if not amenity_type_id:
-        return(
-            jsonify({"message": "issue with type"}), 400 
-        )
+   
     
     new_amenity = Amenity(amenity_name = amenity_name, amenity_address=amenity_address, amenity_place_id=amenity_place_id, amenity_type_id=amenity_type_id)
     

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 
 const AmenityList = ({amenities}) => {
@@ -14,9 +13,6 @@ const AmenityList = ({amenities}) => {
             }
         })
     }
-
-    //sent the amenity details to the addReviewPage, but needs to be only one specific amenity, not all of them
-
 
     return(
         //show the amenity name and its address underneath
@@ -37,10 +33,7 @@ const AmenityList = ({amenities}) => {
                     </div>
                     <div className="directionsButton">
                         <div className="addReviewButton">
-                            {/* <Link to= "/addReview"> */}
-                                <button onClick={() => handleClick(amenity)}>Add Review</button>
-                            {/* </Link> */}
-                            
+                            <button onClick={() => handleClick(amenity)}>Add Review</button>
                         </div>
                         <br/>
                         <div>
