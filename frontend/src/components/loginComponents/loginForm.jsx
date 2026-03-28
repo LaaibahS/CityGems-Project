@@ -30,7 +30,10 @@ const LoginForm = ({}) => {
             const error = await response.json()
             alert(error.message)
         }else{
+            const studentData = await response.json()
             console.log("going to the homepage")
+            localStorage.setItem("studentId", studentData.studentId)
+            console.log("student id is now:", localStorage.getItem("studentId"))
             navigate("/home")
         }
 

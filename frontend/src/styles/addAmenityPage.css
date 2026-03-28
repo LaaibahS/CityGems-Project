@@ -1,4 +1,4 @@
-.addAmenityPage{
+/* .addAmenityPage{
   display:flex;
   gap: 300px;
   background-color: red;
@@ -14,7 +14,7 @@
 .rightSide{
     position: absolute; 
     right:0px;
-} 
+}  */
 
 /* .addAmenityPage{
     min-height: 100vh;
@@ -40,3 +40,26 @@
     flex: 1;
     padding: 20px;
 }  */
+
+
+
+
+
+
+
+/* .addAmenityPage{
+    position: relative;
+    background-color: blue;
+} */
+
+/* .leftSide{
+    position:absolute;
+    left:-50px;
+    background-color: brown;
+}
+
+.rightSide{
+    position:absolute;
+    right:50px;
+    background-color: white;
+} */

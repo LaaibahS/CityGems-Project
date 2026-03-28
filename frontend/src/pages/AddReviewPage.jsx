@@ -5,6 +5,7 @@ import "../styles/AddReviewPage.css"
 import { useState, useEffect} from "react"
 import BackButton from "../components/addAmenityComponents/BackButton"
 import { Link } from "react-router-dom"
+import {useLocation} from "react-router-dom"
 
 //added places for the questions to go but in QuestionDisplay, need to extract the individual questions
 //may actually have to make the questions and answe buttons into a combined component
@@ -15,26 +16,35 @@ function AddReviewPage(){
     //^^ "add review" button is clicked for a certain amenity
     //NOTE: to get studentID, may need to flush the id in the backend and send to homepage
     //^^ can then be sent to this page alongside amenityID
+    
+    const location = useLocation()
+    //console.log("location stuff: ", location)
+    //console.log("state stuff:", location.state)
+    //console.log("amenityId", location.state.amenityId)
+    //console.log("typeId:", location.state.amenityTypeId)
+
+    const reviewAmenityId = location.state.amenityId
+    const reviewAmenityTypeId = location.state.amenityTypeId
+    const studentId = localStorage.getItem("studentId")
+
     const [addReviewForm, setAddReviewForm] = useState({
-            amenityId: "",
-            studentId: "",
+            amenityId: reviewAmenityId,
+            studentId: studentId,
             overallRating: null,
             answers: []
         })
     
     const [questions, setQuestions] = useState([])
 
-    // const [answers, setAnswers] = useState([])
      
         
     useEffect(() => {
         fetchQuestions()
         console.log("form data:", addReviewForm)
-    }, [addReviewForm])
+    }, [])
     
-    //so far just rendered questions for type 1, need to render the other types' questions too
     const fetchQuestions = async () => {
-        const response = await fetch("http://127.0.0.1:5000/amenity_types/1/questions")
+        const response = await fetch(`http://127.0.0.1:5000/amenity_types/${reviewAmenityTypeId}/questions`)
         console.log("status:", response.status)
         const data = await response.json()
         console.log("data: ", data)

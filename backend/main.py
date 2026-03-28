@@ -22,13 +22,15 @@ def verify_student_login():
     student_email = request.json.get("studentEmail")
     student_password = request.json.get("studentPassword")
 
-    verified_student = Student.query.filter_by(student_email=student_email, student_password=student_password).first() #the first record in the db with the matching email and password is the student
+    verified_student = Student.query.filter_by(student_email=student_email, student_password=student_password).first() 
+    #the first record in the db with the matching email and password is the student
 
     if not verified_student: #error message and status code if no student with the matching details exists
         return jsonify({"message": "Invalid login! Please try again"}), 401 #status code 401: unauthorised
     
     return jsonify({
-        "message" : "login successful! "
+        "message" : "login successful! ",
+        "studentId" : verified_student.student_id
     }), 200 #status code 200: successful
 
 # - signup * this one still need to be sure about because i'd have to do validation check to verify they're a student
@@ -176,18 +178,27 @@ def add_review(): #when i want to create new reviews
     amenity_id = request.json.get("amenityId")
 
     if len(answer_list) != 3:
-        jsonify({"message": " all question answers not provided, cannot create review"}), 400
+        return(
+            jsonify({"message": " all question answers not provided, cannot create review"}), 400
+        )
+        
     
     if not isinstance(answer_list, list):
-        jsonify({"message": "question answers not provided in a list, cannot create review"}), 400
+        return(
+            jsonify({"message": "question answers not provided in a list, cannot create review"}), 400
+        )
 
     if not overall_rating:
         return(
             jsonify({"message": "no rating given"}), 400
         )
-    if not student_id or not amenity_id:
+    if not amenity_id:
         return(
-            jsonify({"message": "no student/amenity id"}), 400
+            jsonify({"message": "no amenity id"}), 400
+        ) 
+    if not student_id :
+        return(
+            jsonify({"message": "no student id"}), 400
         ) 
     
     new_Review = Review(overall_rating=overall_rating, student_id=student_id, amenity_id=amenity_id)
@@ -199,12 +210,11 @@ def add_review(): #when i want to create new reviews
         for answers in answer_list:
             new_QuestionAnswer = QuestionAnswer(answer_button=answers["answerButton"], question_id=answers["questionId"], review_id=new_Review.review_id)
             db.session.add(new_QuestionAnswer)
-
         db.session.commit()
+        return jsonify({"message": "review created!"}), 201
     except Exception as e:
         return jsonify({"message": str(e)}), 400
 
-    return jsonify({"message": "review created!"}), 201
     
 
 

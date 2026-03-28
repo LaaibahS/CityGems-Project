@@ -16,7 +16,8 @@ function TotalRatingDropDownMenu({setAddReviewForm}){
         <div>
             <label htmlFor="rating"> Rate this amenity on a scale of 1-5:</label>
             <p>Note: 1 is the lowest rating and 5 is the highest</p>
-            <select id= "rating" name= "rating" onChange={handleSelect} >
+            <select id= "rating" name= "rating" onChange={handleSelect}>
+                    <option value= "">Select Rating</option>
                     <option value= "1">1</option>
                     <option value= "2">2</option>
                     <option value= "3">3</option>

@@ -6,10 +6,12 @@ import AddAmenityButton from "../components/homePageComponents/addAmenityButton"
 import '../styles/homePage.css'
 import { useState, useEffect } from "react";
 
+
 function HomePage(){
     const [amenities, setAmenities] = useState([])
  
     
+
       useEffect(() => {
         fetchAmenities()
       }, [])
