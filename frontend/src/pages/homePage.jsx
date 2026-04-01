@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 
 function HomePage(){
     const [amenities, setAmenities] = useState([])
-    // const [searchResults, setSearchResults] = useState([])
+    const [amenityPlaceId, setAmenityPlaceId] = useState("")
  
       useEffect(() => {
         fetchAmenities()
@@ -29,15 +29,12 @@ function HomePage(){
                 <div>
                     <SearchBar setAmenities = {setAmenities}/>
                 </div>
-                {/* <div>
-                    <SearchResultList searchResults = {searchResults} setAmenities = {setAmenities}/>
-                </div> */}
                 <div className ="filterButtons">
                     <FilterButtons setAmenities = {setAmenities}/>
                 </div>
 
                 <div className="homeAmenityListContainer">
-                    <AmenityList amenities = {amenities}/>
+                    <AmenityList amenities = {amenities} setAmenityPlaceId = {setAmenityPlaceId}/>
                 </div>
                 
                 <div className= "addAmenityHome">
@@ -46,7 +43,7 @@ function HomePage(){
             </div>
             <div className="homeRight">
                 <div className= "homeMap" >
-                    <EmbedMapsAPI/>
+                    <EmbedMapsAPI amenityPlaceId={amenityPlaceId}/>
                 </div>
             </div>
         </div>

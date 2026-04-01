@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 
-const AmenityList = ({amenities}) => {
+const AmenityList = ({amenities, setAmenityPlaceId}) => {
 
     const navigate = useNavigate()
 
@@ -12,6 +12,10 @@ const AmenityList = ({amenities}) => {
                 amenityName: amenity.amenityName
             }
         })
+    }
+
+    const handleDirectionsClick = (amenity) => {
+        setAmenityPlaceId(amenity.amenityPlaceId)
     }
 
     return(
@@ -37,7 +41,7 @@ const AmenityList = ({amenities}) => {
                         </div>
                         <br/>
                         <div>
-                            <button>Get Directions</button>
+                            <button onClick = {() => handleDirectionsClick(amenity)}>Get Directions</button>
                         </div>
                         
                     </div>
