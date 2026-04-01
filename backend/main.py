@@ -90,11 +90,6 @@ def add_amenity(): #when i want to create new amenities
     amenity_place_id = request.json.get("amenityPlaceId")
     amenity_type_id = request.json.get("amenityTypeId")
 
-    # if not amenity_name or not amenity_address or not amenity_place_id or not amenity_type_id:
-    #     return(
-    #         jsonify({"message": "insufficient or wrong amenity data provided"}), 400 
-    #     )
-
     if not amenity_type_id:
         return(
             jsonify({"message": "no amenity type provided"}), 400 
@@ -131,17 +126,30 @@ def add_amenity(): #when i want to create new amenities
 
 #this is for when you find the specific amenity via search
 @app.route("/amenities/<int:id>", methods = ["GET"])
-def find_amenity(id):
+def find_amenity_by_id(id):
     found_amenity = Amenity.query.get(id)
+    found_amenity_list = [found_amenity.to_json()] #need a list to render through AmenityList in homepage
 
-    if not found_amenity:
-        return jsonify({"message": "amenity not found"}), 404 #status code 404: not found
+    if not found_amenity_list:
+        return jsonify({"message": "amenity not found"}), 404
 
     return jsonify({
-        "message": "amenity found",
-        "name": found_amenity.amenity_name,
-        "address" : found_amenity.amenity_address            
+        "amenities" : found_amenity_list         
     }), 200
+
+
+#this is for when you find the specific amenity via search
+@app.route("/amenities/<string:amenityName>", methods = ["GET"])
+def find_amenity(amenityName):
+    found_amenities = Amenity.query.filter(Amenity.amenity_name.ilike(f"{amenityName}%")).all() #return amenities that contain the user's search in their name
+
+    return jsonify([{
+        "message": "amenity found",
+        "id": amenities.amenity_id,
+        "name": amenities.amenity_name,
+        "address" : amenities.amenity_address            
+    } for amenities in found_amenities
+    ]), 200
 
 
 
