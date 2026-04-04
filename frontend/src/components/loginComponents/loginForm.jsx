@@ -2,7 +2,7 @@ import {useState} from "react"
 import {Link, useNavigate} from 'react-router-dom'
 
 const LoginForm = ({}) => {
-    const [studentEmail, setStudentEmail] = useState("")
+    const [studentUsername, setStudentUsername] = useState("")
     const [studentPassword, setStudentPassword] = useState("")
 
     const navigate = useNavigate()
@@ -12,7 +12,7 @@ const LoginForm = ({}) => {
         e.preventDefault()
 
         const data = {
-            studentEmail,
+            studentUsername,
             studentPassword
         }
 
@@ -45,8 +45,8 @@ const LoginForm = ({}) => {
          
         <form onSubmit = {handleSubmit}>
             <div className = "loginInput">
-                <label htmlFor = "studentEmail" >Student email:</label>
-                <input type= "email" id= "studentEmail" value = {studentEmail} onChange={(e) => setStudentEmail(e.target.value)} required></input>
+                <label htmlFor = "studentUsername" >Student username: </label>
+                <input type= "text" id= "studentUsername" value = {studentUsername} onChange={(e) => setStudentUsername(e.target.value)} required></input>
                 <br/>
                 <label htmlFor = "studentPassword">Student Password: </label>
                 <input type = "password" id = "studentPassword" value = {studentPassword} onChange={(e) => setStudentPassword(e.target.value)} required></input>

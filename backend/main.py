@@ -19,10 +19,10 @@ def home():
 # - login with email address and password (check the email and password they enter match the db to login)
 @app.route("/login", methods = ["POST"])
 def verify_student_login():
-    student_email = request.json.get("studentEmail")
+    student_username = request.json.get("studentUsername")
     student_password = request.json.get("studentPassword")
 
-    verified_student = Student.query.filter_by(student_email=student_email, student_password=student_password).first() 
+    verified_student = Student.query.filter_by(student_username=student_username, student_password=student_password).first() 
     #the first record in the db with the matching email and password is the student
 
     if not verified_student: #error message and status code if no student with the matching details exists
@@ -37,21 +37,23 @@ def verify_student_login():
 @app.route("/signup", methods = ["POST"])
 def new_login():
     student_email = request.json.get("studentEmail")
+    student_username = request.json.get("studentUsername")
     student_password = request.json.get("studentPassword")
 
-    if not student_email or not student_password:
+    if not student_email or not student_password or not student_username:
         return(
             jsonify({"message": "insufficient or wrong student data provided"}), 400 #status code 400: unsuccessful
         )
     
-    new_student = Student(student_email = student_email, student_password=student_password)
+    new_student = Student(student_email = student_email, student_username = student_username, student_password=student_password)
+    
     
     try:
         db.session.add(new_student)
         db.session.commit()
         return jsonify({"message": "student login created!"}), 201 #status code 201: created successful
     except Exception as e:
-        return jsonify({"message": str(e)}), 400
+        return jsonify({"message": "cannot create login. Try again using different credentials."}), 400
     
     
 

@@ -4,14 +4,16 @@ from config import db
 #doing object-relational mapping (ORM) of my entities as  
 class Student(db.Model):
     student_id = db.Column(db.Integer, primary_key = True)
-    student_email = db.Column(db.String(255), nullable = False, unique = True)
-    student_password = db.Column(db.String(255), nullable = False, unique = True)
+    student_email = db.Column(db.String(255), nullable = False)
+    student_username = db.Column(db.String(7), nullable = False, unique = True)
+    student_password = db.Column(db.String(255), nullable = False)
 
     #turning python database fields to json objects to pass to the frontend
     def to_json(self):
         return {
             "studentID": self.student_id,
             "studentEmail":  self.student_email,
+            "studentUsername": self.student_username,
             "studentPassword": self.student_password
         }
     
@@ -48,12 +50,14 @@ class Question(db.Model):
     question_id = db.Column(db.Integer, primary_key = True)
     full_question = db.Column(db.String(255), nullable = False, unique = True)
     amenity_type_id = db.Column(db.Integer, db.ForeignKey("amenity_type.type_id"), nullable=False)
+    phrase_display = db.Column(db.String(255), nullable = False, unique = True)
 
     def to_json(self):
         return {
             "questionId": self.question_id,
             "fullQuestion":  self.full_question,
-            "amenityTypeId": self.amenity_type_id
+            "amenityTypeId": self.amenity_type_id,
+            "phraseDisplay": self.phrase_display
         }
 
 

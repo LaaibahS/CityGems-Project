@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 
 const SignupForm = ({}) => {
     const [studentEmail, setStudentEmail] = useState("")
+    const [studentUsername, setStudentUsername] = useState("")
     const [studentPassword, setStudentPassword] = useState("")
 
 
@@ -13,6 +14,7 @@ const SignupForm = ({}) => {
 
         const data = {
             studentEmail,
+            studentUsername,
             studentPassword
         }
 
@@ -26,9 +28,13 @@ const SignupForm = ({}) => {
         }
         const response = await fetch(url, options)
 
+
         if(response.status !== 201 && response.status !== 200){
             const error = await response.json()
             alert(error.message)
+        }
+        else{
+            alert("student login created! Welcome to City Gems!")
         }
     }
 
@@ -40,6 +46,9 @@ const SignupForm = ({}) => {
             <div>
                 <label htmlFor = "studentEmail">Student email: </label>
                 <input type= "email" id= "studentEmail" value = {studentEmail} onChange={(e) => setStudentEmail(e.target.value)} required></input>
+                <br/>
+                <label htmlFor = "studentUsername">Student Username: </label>
+                <input type = "text" id= "studentUsername" value = {studentUsername} onChange={(e) => setStudentUsername(e.target.value)} required></input>
                 <br/>
                 <label htmlFor = "studentPassword">Student Password: </label>
                 <input type = "password" id = "studentPassword" value = {studentPassword} onChange={(e) => setStudentPassword(e.target.value)} required></input>
