@@ -102,41 +102,49 @@
 /* for the review circles */
 .reviewSummaries{
     display: flex;
-    gap: 15px;
+    gap: 20px;
 }
 
 .circle1{
-  width:85px;
-  height:85px;
+  width:105px;
+  height:105px;
   border-radius: 50%;
   background-color: aquamarine;
+  font-size: small;
+  text-align: center;
 }
 
 .circle2{
-  width:85px;
-  height:85px;
+  width:105px;
+  height:105px;
   border-radius: 50%;
   background-color: rgb(246, 161, 57);
+  font-size: small;
+  text-align: center;
 }
 
 .circle3{
-  width:85px;
-  height:85px;
+  width:105px;
+  height:105px;
   border-radius: 50%;
   background-color: rgb(255, 227, 47);
+  font-size: small;
+  text-align: center;
 }
 
 .ratingCircle{
-  width:85px;
-  height:85px;
+  width:105px;
+  height:105px;
   border-radius: 50%;
   background-color: rgb(52, 242, 188);
+  font-size: small;
+  text-align: center;
 }
 
 .directionsButton{
     position: relative;
-    left: 425px;
-    top: -90px;
+    left: 500px;
+    top: -100px;
 }
 
 .addReviewButton{
@@ -159,7 +167,7 @@
 /* addAmenity styling */
 .addAmenityHome{
     position: relative;
-    top: 15px;
+    top: 30px;
 }
 
 

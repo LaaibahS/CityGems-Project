@@ -224,10 +224,7 @@ def add_review(): #when i want to create new reviews
 
 @app.route("/amenities/<int:id>/review_summary", methods = ["GET"])
 def get_review_summary(id):
-    #this is where i get the review summaries with the percentages and overall ratings
-    # questions = Question.query.join(Amenity_type).join(Amenity)\
-    #     .filter(Amenity.id == id).all()
-    
+   
     specific_amenity = Amenity.query.get(id)
 
     #add an error thing here so that i can see if it works on the client
@@ -236,7 +233,7 @@ def get_review_summary(id):
     
     questions = Question.query.filter_by(amenity_type_id=specific_amenity.amenity_type_id).all()
 
-    summary = {}
+    summaryList = []
 
     for question in questions:
         total = QuestionAnswer.query.join(Review).filter(
@@ -252,9 +249,32 @@ def get_review_summary(id):
 
         percentage = ((yes_count / total) * 100) if total > 0 else 0
 
-        summary[question.full_question] = round(percentage, 2)
+        summary = {
+            "phrase_display" : question.phrase_display,
+            "percentage" : round(percentage)
+        }
+        
+        summaryList.append(summary)
 
-    return jsonify(summary), 200
+    #here, need to add a place that will calculate the average rating
+    average_rating = 0
+    total_ratings = 0
+    rating_count = 0
+
+    amenity_review = Review.query.filter_by(amenity_id = id).all()
+
+    for review in amenity_review:
+        total_ratings = total_ratings + review.overall_rating
+        rating_count = rating_count + 1
+
+    average_rating = (total_ratings / rating_count) if rating_count > 0 else 0
+
+
+
+    return jsonify({
+        "summaries": summaryList, #it should show it as a list of arrays instead of an array only 
+        "averageRating" : average_rating
+        }), 200
 
 #TESTED UP TO HERE
 

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import ReviewSummary from "./ReviewSummary"
 
 const AmenityList = ({amenities, setAmenityPlaceId}) => {
 
@@ -29,11 +30,8 @@ const AmenityList = ({amenities, setAmenityPlaceId}) => {
                             {amenity.amenityAddress}
                         </h5>
                     </div>
-                    <div className="reviewSummaries">
-                        <div className="circle1">placeholder1</div>
-                        <div className="circle2">placeholder2</div>
-                        <div className="circle3">placeholder3</div>
-                        <div className= "ratingCircle">average rating</div>
+                    <div>
+                        <ReviewSummary amenity = {amenity}/>
                     </div>
                     <div className="directionsButton">
                         <div className="addReviewButton">
