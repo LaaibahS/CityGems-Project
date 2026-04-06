@@ -1,65 +1,67 @@
-/* .addAmenityPage{
-  display:flex;
-  gap: 300px;
-  background-color: red;
+.addAmenityPage{
+    position: relative;
 }
 
 .leftSide{
     position: absolute;
-    left:0px;
-    width: 400px;
-    height: 500px;
+    left: -730px;
+    top: -350px;
 }
 
 .rightSide{
-    position: absolute; 
-    right:0px;
-}  */
-
-/* .addAmenityPage{
-    min-height: 100vh;
-    background-color: #f5f5f5;
+    position: absolute;
+    left: 250px;
+    top: -350px;
 }
 
-.layout{
-    display: flex;
-    height: 100vh;
+/* amenity type and autocompleted name and address fields */
+.typeSelection, .autocompleteAddress, .autocompleteName {
+  background-color: white;
+  height: 40px;
+  width: 300px;
+  border: none;
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
+  margin-left: 5px; 
+  font-size: large;
+  text-align: center;
 }
 
-/* LEFT PANEL */
-/* .leftSide{
-    width: 420px;
-    background: white;
-    padding: 30px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    overflow-y: auto;
-} */
-
-/* RIGHT PANEL (MAP) */
-/* .rightSide{
-    flex: 1;
-    padding: 20px;
-}  */
-
-
-
-
-
-
-
-/* .addAmenityPage{
-    position: relative;
-    background-color: blue;
-} */
-
-/* .leftSide{
-    position:absolute;
-    left:-50px;
-    background-color: brown;
+/* placesAPI map search box styling */
+.AmenityMapSearch {
+  background-color: rgb(255, 255, 255);
+  font-family: futara;
+  border-radius: 10px;
+  height: 2.5rem;
+  width: 42rem;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
 }
 
-.rightSide{
-    position:absolute;
-    right:50px;
-    background-color: white;
-} */
+.amenityInput{
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  border: none;
+  color: rgb(0, 0, 0);
+  margin-left: 5px;
+  font-size: large;
+}
+
+.amenityInput:focus{
+  outline: none;
+}
+
+.mapSearchIcon{
+   color: #0b938c91; 
+}
+
+.addressLabel, .nameLabel, .typeLabel{
+    font-size: x-large;
+    text-align: center;
+}
+
+button{
+    place-items: center;
+}

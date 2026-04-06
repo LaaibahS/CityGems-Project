@@ -37,12 +37,21 @@ function AddAmenityPage(){
             const error = await response.json()
             alert(error.message)
         }
+        else{
+            alert("amenity has been added!")
+        }
     }
 
     return(
-        <div className = "addAmenityPage" >
-            <form onSubmit={handleSubmit}>
+        <div className = "addAmenityPage">
+            <form className = "addAmenityForm" onSubmit={handleSubmit}>
                 <div className="leftSide">
+                    <div>
+                        <PlacesAPI setAddAmenityForm={setAddAmenityForm}/>
+                    </div>
+                </div> 
+                <div className ="rightSide">
+                    <br/>
                     <div>
                         <TypeDropDownMenu setAddAmenityForm= {setAddAmenityForm} />
                     </div>
@@ -58,14 +67,9 @@ function AddAmenityPage(){
                     <div>
                         <AddButton addAmenityForm= {addAmenityForm}/>
                     </div> 
-                    <div>
-                        <BackButton/>
-                    </div>
-                </div> 
-                <div className ="rightSide">
                     <br/>
                     <div>
-                        <PlacesAPI setAddAmenityForm={setAddAmenityForm}/>
+                        <BackButton/>
                     </div>
                 </div>
             </form>          

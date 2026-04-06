@@ -1,10 +1,11 @@
 function AddAddress({addAmenityForm}){
     return(
         <div>
-            <h3>Amenity Address:</h3>
-            <h6>(Use the searchbar above the map to find a place!)</h6>
+            <div className="addressLabel">
+                <h3>Amenity Address:</h3>
+            </div>
             <div>
-                <input value= {addAmenityForm.amenityAddress} placeholder="search on the map" readOnly></input>
+                <input className = "autocompleteAddress" value= {addAmenityForm.amenityAddress} placeholder="Use the map's search bar" readOnly></input>
             </div>
         </div>
     )

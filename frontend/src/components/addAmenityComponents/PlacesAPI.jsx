@@ -1,9 +1,10 @@
 import { GoogleMap, useJsApiLoader, Marker, Autocomplete} from '@react-google-maps/api'
 import { useState, useRef } from 'react'
+import {FaSearch} from "react-icons/fa"
 
-const mapContainerStyle ={
-    height: "900px",
-    width: "500px"
+const mapContainerStyle = {
+    height: "650px",
+    width: "700px"
 }
 
 //geometry values for city uni
@@ -74,10 +75,14 @@ function PlacesAPI ({setAddAmenityForm}){
             }} 
             onPlaceChanged={handlePlaceChanged }
             options= {{componentRestrictions: {country: "gb"}, types: ["establishment"], fields:["name","formatted_address","place_id","geometry"]}}>
-
-                <input id= "mapSearchBox" placeholder='search for a place' type= "text"></input>
+                <div className="AmenityMapSearch">
+                    <FaSearch className = "mapSearchIcon"/>
+                    <input className = "amenityInput" id= "mapSearchBox" placeholder='Search for an amenity here...' type= "text"></input>
+                </div>
+                
 
             </Autocomplete>
+            <br/>
             <GoogleMap
             mapContainerStyle={mapContainerStyle}
             center = {centre}
