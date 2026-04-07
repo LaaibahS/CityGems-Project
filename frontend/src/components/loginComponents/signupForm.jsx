@@ -1,7 +1,6 @@
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import {Link} from 'react-router-dom'
 
-//INSTEAD OF NAVIGATING TO THE SIGNUP PAGE IT SHOULD NAVIGATE TO LOGIN PAGE
 
 const SignupForm = ({}) => {
     const [studentEmail, setStudentEmail] = useState("")
@@ -39,7 +38,7 @@ const SignupForm = ({}) => {
     }
 
     return(      
-        <div className="app">
+        <div className="signUpWindow">
           <h1 className= "SignupPageTitle">THANKS FOR JOINING CITY GEMS!</h1>
         
         <form onSubmit = {handleSubmit}>
@@ -55,7 +54,10 @@ const SignupForm = ({}) => {
                 
             </div>
             <br/>
-            <button type= "submit">Sign up</button>
+            <div>
+                <button type= "submit">Sign up</button>
+            </div>
+            <br/>
             <Link to= '/'>
                 <button type= "submit">Back to login</button>
             </Link>

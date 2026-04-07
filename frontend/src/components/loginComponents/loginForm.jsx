@@ -40,7 +40,7 @@ const LoginForm = ({}) => {
     }
 
     return(      
-        <div className = "app">
+        <div className = "loginWindow">
           <h1 className= "LoginPageTitle">WELCOME TO CITY GEMS!</h1>
          
         <form onSubmit = {handleSubmit}>

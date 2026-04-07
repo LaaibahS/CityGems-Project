@@ -1,0 +1,34 @@
+/* this was #root before. I alsp tried .loginForm, .signupForm, but still didn't work */
+#root{
+  left: 50%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+#studentEmail {
+  position: relative;
+  left: 16px;
+}
+
+.linkToSignUp{
+  position: relative;
+  top: -10px;
+}
+
+.loginWindow{
+  color: black;
+  background-color: white;
+  width: 500px;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.signUpWindow{
+  color: black;
+  background-color: white;
+  width: 500px;
+  height: 350px;
+  border-radius: 10px;
+}
