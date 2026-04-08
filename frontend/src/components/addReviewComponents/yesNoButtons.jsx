@@ -20,9 +20,13 @@ function YesNoButtons({ questionId, setAddReviewForm }) {
     }
     return (
         <div className="answerButtons">
-            <button type="button" onClick={() => handleClick("y")}>Yes</button>
+            <button className = "yesButton" 
+            type="button" 
+            onClick={() => handleClick("y")}>Yes</button>
             <br />
-            <button type="button" onClick={() => handleClick("n")}>No</button>
+            <button className = "noButton" 
+            type="button" 
+            onClick={() => handleClick("n")}>No</button>
         </div>
     )
 }

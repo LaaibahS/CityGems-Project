@@ -7,22 +7,10 @@ import BackButton from "../components/addAmenityComponents/BackButton"
 import { Link } from "react-router-dom"
 import {useLocation} from "react-router-dom"
 
-//added places for the questions to go but in QuestionDisplay, need to extract the individual questions
-//may actually have to make the questions and answe buttons into a combined component
-// ^^ so that the answer buttons are linked directly to each question
 function AddReviewPage(){
-
-    //NOTE: to get the amenityID need to send the amenity details in state when 
-    //^^ "add review" button is clicked for a certain amenity
-    //NOTE: to get studentID, may need to flush the id in the backend and send to homepage
-    //^^ can then be sent to this page alongside amenityID
     
     const location = useLocation()
-    //console.log("location stuff: ", location)
-    //console.log("state stuff:", location.state)
-    //console.log("amenityId", location.state.amenityId)
-    //console.log("typeId:", location.state.amenityTypeId)
-
+    const reviewAmenityName = location.state.amenityName
     const reviewAmenityId = location.state.amenityId
     const reviewAmenityTypeId = location.state.amenityTypeId
     const studentId = localStorage.getItem("studentId")
@@ -76,22 +64,26 @@ function AddReviewPage(){
     return(
         <div className="addReviewPage">
             <form onSubmit= {handleSubmit}>
-                <div className="questions">
+                <div className="title">
+                    <div>
+                        Review for: {reviewAmenityName}
+                    </div>
+                    
+                </div>
+                <div className = "reviewAndRatingCard">
                     <QuestionDisplay questions = {questions} setAddReviewForm= {setAddReviewForm}/>
-                </div>
-                <br/>
-                <div className="rating">
-                    <TotalRatingDropDownMenu setAddReviewForm={setAddReviewForm}/>
-                </div>
-                <br/>
-                <div className="reviewButton">
-                    <AddReviewButton/>
+                     <TotalRatingDropDownMenu setAddReviewForm={setAddReviewForm}/>
+                    {/* <br/> */}
+                    <div className="reviewButton">
+                        <AddReviewButton/>
+                    </div>
+
+
                 </div>
         </form>
-        <br/>
-        <Link to= "/home">
+        <div className="backToHome">
             <BackButton/>
-        </Link>
+        </div>
         </div>
     )
 }

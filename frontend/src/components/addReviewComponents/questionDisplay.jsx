@@ -3,10 +3,11 @@ import YesNoButtons from "./yesNoButtons"
 const QuestionDisplay = ({questions, setAddReviewForm}) => {
 
     return(
-        <div>
-            <div className= "questions">
+        <div className="questionForm">
+            {/* <h3 className="introToQuestions">1: Review the amenity</h3> */}
+            <div className="questions">
                 {questions.map((question) =>(
-                    <div className="questions" key = {question.id}>
+                    <div key = {question.id}>
                         <h3 >{question.fullQuestions}</h3>
                         <YesNoButtons questionId= {question.id} 
                         setAddReviewForm={setAddReviewForm}/>

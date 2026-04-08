@@ -9,14 +9,11 @@ function TotalRatingDropDownMenu({setAddReviewForm}){
         console.log("added rating")
     }
 
-    //one thing to sort is, default rating shown is 1
-    //if someone picks one - error will say they didn't give rating
-    //maybe set default rating to something or revert back to using input + dataList
     return(
-        <div>
+        <div className="ratingWindow">
             <label htmlFor="rating"> Rate this amenity on a scale of 1-5:</label>
             <p>Note: 1 is the lowest rating and 5 is the highest</p>
-            <select id= "rating" name= "rating" onChange={handleSelect}>
+            <select className = "ratingOptions" id= "rating" name= "rating" onChange={handleSelect}>
                     <option value= "">Select Rating</option>
                     <option value= "1">1</option>
                     <option value= "2">2</option>
