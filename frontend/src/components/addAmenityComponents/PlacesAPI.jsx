@@ -40,6 +40,15 @@ function PlacesAPI ({setAddAmenityForm}){
         )
     }
 
+    const mapAutocomplete = (autocomplete) => {
+    autocompleteRef.current = autocomplete
+    autocomplete.setBounds(londonBounds)
+
+    if (mapRef.current) {
+        autocomplete.bindTo("bounds", mapRef.current)
+    }
+}
+
     const handlePlaceChanged = () => {
 
         const place = autocompleteRef.current.getPlace();
@@ -67,12 +76,7 @@ function PlacesAPI ({setAddAmenityForm}){
     return(
          <div>
             <Autocomplete 
-            onLoad={(autocomplete) => {(autocompleteRef.current = autocomplete)
-                autocomplete.setBounds(londonBounds)
-                if(mapRef.current){
-                    autocomplete.bindTo("bounds", mapRef.current)
-                }
-            }} 
+            onLoad={mapAutocomplete} 
             onPlaceChanged={handlePlaceChanged }
             options= {{componentRestrictions: {country: "gb"}, types: ["establishment"], fields:["name","formatted_address","place_id","geometry"]}}>
                 <div className="AmenityMapSearch">

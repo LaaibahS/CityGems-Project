@@ -3,14 +3,15 @@ import EmbedMapsAPI from "../components/homePageComponents/EmbedMapsApi";
 import SearchBar from "../components/homePageComponents/searchBar";
 import FilterButtons from "../components/homePageComponents/FilterButtons";
 import AddAmenityButton from "../components/homePageComponents/addAmenityButton";
-import SearchResultList from "../components/homePageComponents/SearchResultList";
 import '../styles/homePage.css'
 import { useState, useEffect } from "react";
 
 
 function HomePage(){
+
+    const defaultDestinationPlaceId = import.meta.env.VITE_MAP_DEFAULT_DESTINATION_PLACE_ID
     const [amenities, setAmenities] = useState([])
-    const [amenityPlaceId, setAmenityPlaceId] = useState("")
+    const [amenityPlaceId, setAmenityPlaceId] = useState(defaultDestinationPlaceId)
  
       useEffect(() => {
         fetchAmenities()
@@ -32,14 +33,18 @@ function HomePage(){
                 <div className ="filterButtons">
                     <FilterButtons setAmenities = {setAmenities}/>
                 </div>
-
+            
                 <div className="homeAmenityListContainer">
-                    <AmenityList amenities = {amenities} setAmenityPlaceId = {setAmenityPlaceId}/>
+                    <div>
+                        <AmenityList amenities = {amenities} setAmenityPlaceId = {setAmenityPlaceId}/>
+                    </div>
                 </div>
                 
-                <div className= "addAmenityHome">
+
+                 <div className= "addAmenityHome">
                     <AddAmenityButton/>
                 </div>
+                
             </div>
             <div className="homeRight">
                 <div className= "homeMap" >

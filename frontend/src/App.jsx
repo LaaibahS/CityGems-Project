@@ -5,7 +5,6 @@ import LoginPage from './pages/loginPage'
 import HomePage from './pages/homePage'
 import SignupPage from './pages/signupPage'
 import AddAmenityPage from './pages/AddAmenityPage'
-import './App.css'
 import AddReviewPage from './pages/AddReviewPage'
 
 function App() {

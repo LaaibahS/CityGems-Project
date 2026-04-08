@@ -1,21 +1,21 @@
 .homePage{
-    position: relative;
+  position: relative;
 }
 
 
 
 /* left side of the homepage */
 .homeLeft{
-    position: absolute;
-    left: 30px;
-    top: 20px;
+  position: absolute;
+  left: 30px;
+  top: 20px;
 }
 
 /* right side of the homepage */
 .homeRight{
-    position: absolute;
-    left: 50%;
-    top: 0px;
+  position: absolute;
+  left: 50%;
+  top: 0px;
 }
 
 
@@ -26,7 +26,7 @@
   font-family: futara;
   border-radius: 10px;
   height: 2.5rem;
-  width: 36rem;
+  width: 40rem;
   padding: 0 15px;
   display: flex;
   align-items: center;
@@ -97,6 +97,24 @@
 } 
 
 
+/* amenityList container */
+div.homeAmenityListContainer {
+  position: relative;
+  background-color: rgb(238, 236, 236);
+  width: 670px;
+  border-radius: 10px;
+  text-align: left;
+  color: black;
+  top: 10px;
+}
+
+/* size of amenity cards */
+.amenities{
+  border-bottom: 2px solid #989494;
+  margin-bottom: 0%;
+  padding-left: 10px;
+}
+
 
 
 /* for the review circles */
@@ -109,7 +127,7 @@
   width:105px;
   height:105px;
   border-radius: 50%;
-  background-color: aquamarine;
+  background-color: rgb(128, 231, 238);
   font-size: small;
   text-align: center;
 }
@@ -153,15 +171,6 @@
 }
 
 
-
-/* shifting space between amenityList and filter buttons */
-.homeAmenityListContainer{
-  position: relative;
-  top: 10px;
-  background-color: transparent;
-  color: rgb(0, 0, 0);
-  text-align:left;
-}
 
 
 /* addAmenity styling */
