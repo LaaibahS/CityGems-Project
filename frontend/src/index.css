@@ -37,10 +37,6 @@ button:hover {
   /* #eeff32; */
 }
 
-/* button:active{
-  background-color: #a31111;
-} */
-
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;

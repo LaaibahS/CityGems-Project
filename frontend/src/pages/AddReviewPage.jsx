@@ -76,11 +76,10 @@ function AddReviewPage() {
                     <QuestionDisplay questions={questions} setAddReviewForm={setAddReviewForm} />
                     <TotalRatingDropDownMenu setAddReviewForm={setAddReviewForm} />
 
+
                     <div className="reviewButton">
                         <AddReviewButton />
                     </div>
-
-
                 </div>
             </form>
             <div className="backToHome">
