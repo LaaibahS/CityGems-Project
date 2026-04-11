@@ -33,18 +33,18 @@ function HomePage(){
                 <div className ="filterButtons">
                     <FilterButtons setAmenities = {setAmenities}/>
                 </div>
-            
+
+                <br/>
+                <div className= "addAmenityHome">
+                    <AddAmenityButton/>
+                </div>
+                <br/>
                 <div className="homeAmenityListContainer">
                     <div>
                         <AmenityList amenities = {amenities} setAmenityPlaceId = {setAmenityPlaceId}/>
                     </div>
                 </div>
-                
 
-                 <div className= "addAmenityHome">
-                    <AddAmenityButton/>
-                </div>
-                
             </div>
             <div className="homeRight">
                 <div className= "homeMap" >

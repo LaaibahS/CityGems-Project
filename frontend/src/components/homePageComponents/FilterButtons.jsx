@@ -26,6 +26,7 @@ function FilterButtons({setAmenities}){
     
     return(
         <div className = "homeFilters">
+             <div className="filterAmenity">Filter Amenities:</div>
             <div className= "foodButton">
                 <button onClick = {handleFoodClick}>Food</button>
             </div>

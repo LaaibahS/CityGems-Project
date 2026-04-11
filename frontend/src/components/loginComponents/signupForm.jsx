@@ -46,7 +46,7 @@ const SignupForm = ({}) => {
                 <label htmlFor = "studentEmail">Student email: </label>
                 <input type= "email" id= "studentEmail" value = {studentEmail} onChange={(e) => setStudentEmail(e.target.value)} required></input>
                 <br/>
-                <label htmlFor = "studentUsername">Student Username: </label>
+                <label htmlFor = "studentUsername">Student IT login: </label>
                 <input type = "text" id= "studentUsername" value = {studentUsername} onChange={(e) => setStudentUsername(e.target.value)} required></input>
                 <br/>
                 <label htmlFor = "studentPassword">Student Password: </label>

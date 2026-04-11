@@ -46,7 +46,7 @@
 }
 
 .searchIcon{
-  color: #0b938c;
+  color: #e61d1d;
 }
 
 
@@ -95,6 +95,10 @@
 .activityButton{
   margin-left: 110px
 } 
+
+.filterAmenity{
+  margin-top:5px;
+}
 
 
 /* amenityList container */

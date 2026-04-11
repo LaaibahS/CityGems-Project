@@ -45,7 +45,7 @@ const LoginForm = ({}) => {
          
         <form onSubmit = {handleSubmit}>
             <div className = "loginInput">
-                <label htmlFor = "studentUsername" >Student username: </label>
+                <label htmlFor = "studentUsername" >Student IT login: </label>
                 <input type= "text" id= "studentUsername" value = {studentUsername} onChange={(e) => setStudentUsername(e.target.value)} required></input>
                 <br/>
                 <label htmlFor = "studentPassword">Student Password: </label>
