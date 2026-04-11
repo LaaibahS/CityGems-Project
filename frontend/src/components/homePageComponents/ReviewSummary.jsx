@@ -35,16 +35,16 @@ function ReviewSummary({amenity}){
     return(
         <div className="reviewSummaries">
             <div className="circle1">
-                <p>{summary[0].percentage}% of students agree this place: {summary[0].phrase_display}</p>
+                <p>{summary[0].percentage}% of students agree this place {summary[0].phrase_display}</p>
             </div>
             <div className="circle2">
-                <p>{summary[1].percentage}% of students agree this place: {summary[1].phrase_display}</p>
+                <p>{summary[1].percentage}% of students agree this place {summary[1].phrase_display}</p>
             </div>
             <div className="circle3">
-                <p>{summary[2].percentage}% of students agree this place: {summary[2].phrase_display}</p>
+                <p>{summary[2].percentage}% of students agree this place {summary[2].phrase_display}</p>
             </div>
             <div className= "ratingCircle">
-                <p>average rating: {averageRating}</p>
+                <p> average rating: {averageRating}</p>
             </div>
         </div>
     )

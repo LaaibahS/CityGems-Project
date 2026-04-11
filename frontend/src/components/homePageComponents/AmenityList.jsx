@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom"
 import ReviewSummary from "./ReviewSummary"
 
+// https://www.youtube.com/watch?v=LteOh-m-Nm4
+//this youtube tutorial was used to transfer amenity data to the review page
+
 const AmenityList = ({amenities, setAmenityPlaceId}) => {
 
     const navigate = useNavigate()

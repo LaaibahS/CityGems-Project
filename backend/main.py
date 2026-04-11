@@ -3,6 +3,10 @@ from flask import request, jsonify
 from config import app, db
 from models import Student, Amenity_type, Amenity, Question, Review, QuestionAnswer
 
+# https://www.youtube.com/watch?v=PppslXOR7TA
+# this tutorial was used for the set up of the flask backend and react frontend
+# models.py and config.py use the structure provided in this tutorial, although it written specifically for this project
+
 with app.app_context():
     db.create_all()
     print("Registered tables:", db.metadata.tables.keys()) #test: check db tables

@@ -2,6 +2,11 @@ import SearchResultList from "./SearchResultList"
 import {FaSearch} from "react-icons/fa"
 import { useState } from "react"
 
+// https://www.youtube.com/watch?v=sWVgMcz8Q44
+//this component and all constitent component parts were coded using this youtube tutorial
+//but were adapted to meet the needs of my project including my own endpoint and styling it to match
+//the colour scheme of my website
+
 function SearchBar({ setAmenities}){
 
     const [searchInput, setSearchInput] = useState("")

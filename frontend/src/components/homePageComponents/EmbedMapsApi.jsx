@@ -1,4 +1,4 @@
-function EmbedMapsAPI({amenityPlaceId}){ //need to add props here so that the amenity place ids can be passed as destination place id
+function EmbedMapsAPI({amenityPlaceId}){ 
 
   //code taken from official google maps embed API website:
   //https://developers.google.com/maps/documentation/embed/embedding-map?_gl=1*3wlay7*_up*MQ..*_ga*NjM3NTA4NjQuMTc3MzA2NjY3MA..*_ga_NRWSTWS78N*czE3NzMwNjY2NzAkbzEkZzAkdDE3NzMwNjY2NzAkajYwJGwwJGgw*_ga_SM8HXJ53K2*czE3NzMwNjY2NzAkbzEkZzAkdDE3NzMwNjY2NzAkajYwJGwwJGgw#directions_mode
@@ -21,5 +21,3 @@ function EmbedMapsAPI({amenityPlaceId}){ //need to add props here so that the am
 };
 
 export default EmbedMapsAPI
-
-// ChIJdZDu2VobdkgRpYFNHN_eQXg  - sainsbury's local place id

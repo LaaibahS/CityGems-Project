@@ -2,6 +2,15 @@ import { GoogleMap, useJsApiLoader, Marker, Autocomplete} from '@react-google-ma
 import { useState, useRef } from 'react'
 import {FaSearch} from "react-icons/fa"
 
+// https://www.youtube.com/watch?v=ixPpl-M9SRU
+//this component was used using a youtube tutorial to add a map and marker to the addAmenityPage
+
+// https://developers.google.com/maps/documentation/javascript/legacy/place-autocomplete?utm_source=chatgpt.com
+// this google documentation was used to add the autocomplete search bar, the boundaries and binding them to the map
+
+// https://www.youtube.com/watch?v=sWVgMcz8Q44
+//styling of the searchbar is the same as the styling of searchbar component in homepage and therefore uses same tutorial
+
 const mapContainerStyle = {
     height: "650px",
     width: "700px"
@@ -83,8 +92,6 @@ function PlacesAPI ({setAddAmenityForm}){
                     <FaSearch className = "mapSearchIcon"/>
                     <input className = "amenityInput" id= "mapSearchBox" placeholder='Search for an amenity here...' type= "text"></input>
                 </div>
-                
-
             </Autocomplete>
             <br/>
             <GoogleMap

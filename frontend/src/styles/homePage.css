@@ -130,6 +130,7 @@ div.homeAmenityListContainer {
   background-color: rgb(128, 231, 238);
   font-size: small;
   text-align: center;
+  font-weight: 500;
 }
 
 .circle2{
@@ -139,6 +140,7 @@ div.homeAmenityListContainer {
   background-color: rgb(246, 161, 57);
   font-size: small;
   text-align: center;
+  font-weight: 500;
 }
 
 .circle3{
@@ -148,6 +150,7 @@ div.homeAmenityListContainer {
   background-color: rgb(255, 227, 47);
   font-size: small;
   text-align: center;
+  font-weight: 500;
 }
 
 .ratingCircle{
@@ -157,7 +160,10 @@ div.homeAmenityListContainer {
   background-color: rgb(52, 242, 188);
   font-size: small;
   text-align: center;
+  font-weight: 500;
 }
+
+
 
 .directionsButton{
     position: relative;
