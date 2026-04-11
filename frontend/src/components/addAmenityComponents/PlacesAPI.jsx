@@ -11,6 +11,10 @@ import {FaSearch} from "react-icons/fa"
 // https://www.youtube.com/watch?v=sWVgMcz8Q44
 //styling of the searchbar is the same as the styling of searchbar component in homepage and therefore uses same tutorial
 
+// https://www.youtube.com/watch?v=iP3DnhCUIsE
+//first 10mins of this tutorial was also used. intitially used LoadScript, but that loaded autocomplete before the map which 
+// caused an error so jsApiLoader was used instead, to load the map first
+
 const mapContainerStyle = {
     height: "650px",
     width: "700px"
