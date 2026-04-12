@@ -18,6 +18,8 @@ The "frontend" folder also contains package.json which includes all the dependen
 I have also included a .env.example folder which can be used to place your api keys needed to access the google maps.
 The other files in the frontend folder are used for the configuration of the project and don't need to be touched.
 
+I also have an 'instance' folder which contains my cityGems.db file which stores my tables
+
 ####Installation guide
 
 First, we require 2 google apis keys in order to run the project.The following steps instruct you how to create your own api keys.
