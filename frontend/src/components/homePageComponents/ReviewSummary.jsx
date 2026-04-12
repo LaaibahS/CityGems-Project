@@ -44,7 +44,7 @@ function ReviewSummary({amenity}){
                 <p>{summary[2].percentage}% of students agree this place {summary[2].phrase_display}</p>
             </div>
             <div className= "ratingCircle">
-                <p> average rating: {averageRating}</p>
+                <p className="ratingText"> average rating: {averageRating}</p>
             </div>
         </div>
     )
