@@ -10,7 +10,7 @@ function EmbedMapsAPI({amenityPlaceId}){
     <div>
       <iframe
         width="750"
-        height="730"
+        height="660"
         style={{border:0}}
         referrerPolicy="no-referrer-when-downgrade"
         src={`https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=place_id:${originPlaceId}&destination=place_id:${amenityPlaceId}`}

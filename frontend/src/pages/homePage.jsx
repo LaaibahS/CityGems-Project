@@ -5,6 +5,7 @@ import FilterButtons from "../components/homePageComponents/FilterButtons";
 import AddAmenityButton from "../components/homePageComponents/addAmenityButton";
 import '../styles/homePage.css'
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 
 function HomePage(){
@@ -44,13 +45,25 @@ function HomePage(){
                         <AmenityList amenities = {amenities} setAmenityPlaceId = {setAmenityPlaceId}/>
                     </div>
                 </div>
-
+                <div>
+                              
+                </div>
+                
+            
             </div>
             <div className="homeRight">
                 <div className= "homeMap" >
                     <EmbedMapsAPI amenityPlaceId={amenityPlaceId}/>
+                    <div className="logOutButton">
+                        <Link to= "/">
+                            <button>Log Out</button>
+                        </Link>
+                    </div>
                 </div>
+                
             </div>
+
+
         </div>
         
     )
